@@ -34,5 +34,5 @@ jobs:
             docker build -t nextjs-app .
 
             # Rodar o novo container Docker
-            docker run -d -p 3000:3000 --name nextjs-app nextjs-app
+            docker run -d -p 80:3000 --name nextjs-app nextjs-app
           EOF
