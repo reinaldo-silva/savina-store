@@ -8,9 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        title: "var(--font-marcellus)",
+        encode: "var(--font-encode-sans)",
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#DD5A12",
       },
     },
   },
