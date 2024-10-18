@@ -1,4 +1,4 @@
-# Savina store
+# Savina store v1.0
 
 docker build -t savina-app-prod .
 
