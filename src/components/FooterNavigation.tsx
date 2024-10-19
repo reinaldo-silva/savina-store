@@ -8,17 +8,19 @@ import { useEffect, useRef, useState } from "react";
 import type { UrlObject } from "url";
 
 const FooterNavigation = () => {
-  const [toggle, setToggle] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
   const style = useSpring({
-    from: { transform: "translateY(100%)" },
-    to: { transform: "translateY(0%)" },
+    to: { transform: isVisible ? "translateY(0%)" : "translateY(100%)" },
     config: { tension: 170, friction: 26 },
-    delay: 1000,
-    reset: toggle,
   });
 
   useEffect(() => {
-    setToggle(true);
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
