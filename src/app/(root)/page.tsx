@@ -129,7 +129,7 @@ export default function HomePage() {
       </section>
 
       <footer className="">
-        <div className="mx-auto flex w-[400px] -translate-y-10 flex-col items-center gap-4 border-2 border-t border-zinc-50 bg-zinc-100 p-4">
+        <div className="mx-auto flex -translate-y-10 flex-col items-center gap-4 border-2 border-t border-zinc-50 bg-zinc-100 p-4">
           <Heading as="h3" className="text-balance uppercase">
             Nossos contatos
           </Heading>
