@@ -1,10 +1,16 @@
-import { Button } from "@/components/Button";
 import { Heading } from "@/components/Heading";
 import { Text } from "@/components/Text";
+import { Button } from "@/components/ui/button";
+import { getProducts } from "@/services/productService";
 import { Instagram, Mail, Youtube } from "lucide-react";
 import Image from "next/image";
+import { use } from "react";
 
 export default function HomePage() {
+  const allProducts = use(getProducts({}));
+
+  console.log(allProducts);
+
   return (
     <div>
       <section className="flex gap-2 p-2">
@@ -126,6 +132,17 @@ export default function HomePage() {
             className="h-[500px] w-full object-cover"
           />
         </div>
+      </section>
+
+      <section className="p-4">
+        <h2>Prata</h2>
+        {/* <Carousel dataLength={allProducts.data.length * 2} widthItem={192}>
+          {allProducts.data.map((data, index) => (
+            <div className="snap-start" key={index}>
+              <ProductCard data={data} />
+            </div>
+          ))}
+        </Carousel> */}
       </section>
 
       <footer className="">

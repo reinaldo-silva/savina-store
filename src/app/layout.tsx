@@ -1,6 +1,7 @@
+import { Toaster } from "@/components/ui/sonner";
+import "@/styles/globals.css";
 import type { Metadata } from "next";
-import "./globals.css";
-import { Marcellus_SC, Encode_Sans } from "next/font/google";
+import { Encode_Sans, Marcellus_SC } from "next/font/google";
 
 const marcellus = Marcellus_SC({
   weight: ["400"],
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`antialiased ${marcellus.variable} ${encodeSans.variable}`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );

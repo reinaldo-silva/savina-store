@@ -26,7 +26,7 @@ const FooterNavigation = () => {
   return (
     <animated.footer
       style={style}
-      className="fixed bottom-0 left-0 right-0 border-t bg-white shadow-lg md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-30 border-t bg-white shadow-lg md:hidden"
     >
       <nav className="flex items-center justify-around py-2">
         <IconButton Icon={House} to={"/"} description="Início" />
