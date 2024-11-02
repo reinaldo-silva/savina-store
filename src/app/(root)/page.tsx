@@ -1,6 +1,7 @@
 import { Heading } from "@/components/Heading";
+import { PrataSection } from "@/components/pages/home/PrataSection";
 import { Text } from "@/components/Text";
-import { Button } from "@/components/ui/button";
+import { getCategories } from "@/services/categoriesService";
 import { getProducts } from "@/services/productService";
 import { Instagram, Mail, Youtube } from "lucide-react";
 import Image from "next/image";
@@ -8,48 +9,12 @@ import { use } from "react";
 
 export default function HomePage() {
   const allProducts = use(getProducts({}));
-
-  console.log(allProducts);
+  const allCategories = use(getCategories());
 
   return (
     <div>
-      <section className="flex gap-2 p-2">
-        <div className="flex flex-1 flex-col items-start justify-end bg-zinc-100 p-4">
-          <Heading as="h1" className="text-balance !text-7xl uppercase">
-            coleção de joias para voce
-          </Heading>
-
-          <Button className="mt-10">Conhecer produtos</Button>
-        </div>
-        <div className="grid h-[400px] w-[500px] grid-cols-2 grid-rows-2 gap-2">
-          <div className="col-span-2">
-            <Image
-              src="/img1.avif"
-              width={600}
-              height={600}
-              alt="img"
-              className="h-full w-full object-cover grayscale"
-            />
-          </div>
-          <div>
-            <Image
-              src="/img2.avif"
-              width={600}
-              height={600}
-              alt="img"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div>
-            <Image
-              src="/img3.avif"
-              width={600}
-              height={600}
-              alt="img"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
+      <section className="flex gap-2">
+        <Image alt="banner" src="/img1.png" width={1200} height={1000} />
       </section>
       <section className="flex flex-col justify-center p-6 py-10">
         <Heading as="h2" className="text-balance text-center uppercase">
@@ -57,42 +22,20 @@ export default function HomePage() {
         </Heading>
 
         <div className="flex justify-center gap-6 py-4">
-          <div>
-            <Image
-              src="/img4.avif"
-              width={600}
-              height={600}
-              alt="img"
-              className="h-[300px] w-[200px] object-cover"
-            />
-            <h3 className="mt-2 text-center font-encode text-lg font-medium uppercase">
-              Prata
-            </h3>
-          </div>
-          <div>
-            <Image
-              src="/img5.avif"
-              width={600}
-              height={600}
-              alt="img"
-              className="h-[300px] w-[200px] object-cover"
-            />
-            <h3 className="mt-2 text-center font-encode text-lg font-medium uppercase">
-              Prata
-            </h3>
-          </div>
-          <div>
-            <Image
-              src="/img4.avif"
-              width={600}
-              height={600}
-              alt="img"
-              className="h-[300px] w-[200px] object-cover"
-            />
-            <h3 className="mt-2 text-center font-encode text-lg font-medium uppercase">
-              Prata
-            </h3>
-          </div>
+          {allCategories.data.slice(0, 3).map((cat, index) => (
+            <div key={index}>
+              <Image
+                src="/img4.avif"
+                width={600}
+                height={600}
+                alt="img"
+                className="h-[300px] w-[200px] object-cover"
+              />
+              <h3 className="mt-2 text-center font-encode text-lg font-medium uppercase">
+                {cat.name}
+              </h3>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -134,19 +77,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="p-4">
-        <h2>Prata</h2>
-        {/* <Carousel dataLength={allProducts.data.length * 2} widthItem={192}>
-          {allProducts.data.map((data, index) => (
-            <div className="snap-start" key={index}>
-              <ProductCard data={data} />
-            </div>
-          ))}
-        </Carousel> */}
-      </section>
+      <PrataSection products={allProducts.data} />
 
       <footer className="">
-        <div className="mx-auto flex -translate-y-10 flex-col items-center gap-4 border-2 border-t border-zinc-50 bg-zinc-100 p-4">
+        <div className="mx-auto flex flex-col items-center gap-4 border-2 border-t border-zinc-50 bg-zinc-100 p-4">
           <Heading as="h3" className="text-balance uppercase">
             Nossos contatos
           </Heading>

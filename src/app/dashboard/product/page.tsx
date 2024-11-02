@@ -22,7 +22,7 @@ import { getProducts } from "@/services/productService";
 import { Frown, ImageOff, Pencil } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { use } from "react";
+import { Suspense, use } from "react";
 
 export default function ProductManagerPage() {
   const allCategories = use(getCategories());
@@ -33,8 +33,10 @@ export default function ProductManagerPage() {
       <div className="flex justify-between">
         <Heading as="h4">Gestão de produtos</Heading>
 
-        <CreateProductForm categories={allCategories.data} />
-        <EditProductForm categories={allCategories.data} />
+        <Suspense>
+          <CreateProductForm categories={allCategories.data} />
+          <EditProductForm categories={allCategories.data} />
+        </Suspense>
       </div>
       <CardDefault className="!p-0">
         <Table>
