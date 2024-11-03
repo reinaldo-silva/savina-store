@@ -30,13 +30,11 @@ jobs:
             # Puxar as últimas alterações do repositório
             git pull origin main
 
-            # Build da imagem Docker
-            docker build -t nextjs-app .
+            # Build da imagem Docker com o argumento de ambiente
+            docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t nextjs-app .
 
-            # Rodar o novo container Docker com a variável de ambiente
-            docker run -d -p 80:3000 --name nextjs-app \
-              -e NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} \
-              nextjs-app
+            # Rodar o novo container Docker
+            docker run -d -p 80:3000 --name nextjs-app nextjs-app
 
             docker system prune -af
           EOF

@@ -4,6 +4,10 @@ FROM node:18-alpine
 # Define o diretório de trabalho dentro do container
 WORKDIR /app
 
+# Define a variável de ambiente para o build
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+
 # Copia o package.json e package-lock.json
 COPY package*.json ./
 
