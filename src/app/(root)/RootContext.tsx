@@ -12,7 +12,7 @@ export function RootContextProvider({ children }: PropsWithChildren) {
   const [filterOpen, setFilterOpen] = useState(false);
 
   function toggleFilter() {
-    setFilterOpen((oldValue) => !oldValue);
+    setFilterOpen(() => !filterOpen);
   }
 
   return (

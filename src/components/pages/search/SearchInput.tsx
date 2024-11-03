@@ -7,6 +7,7 @@ import { animated, useSpring } from "@react-spring/web";
 import clsx from "clsx";
 import { Filter, Search, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -60,6 +61,12 @@ export function SearchInput({ name }: { name: string }) {
     config: { duration: 200 },
   });
 
+  useEffect(() => {
+    if (pathname !== "/search" && filterOpen) {
+      toggleFilter();
+    }
+  }, [filterOpen, pathname, toggleFilter]);
+
   return (
     <animated.div
       style={{ ...transformProps, ...opacityProps }}
@@ -77,7 +84,7 @@ export function SearchInput({ name }: { name: string }) {
             name="name"
             render={({ field }) => {
               return (
-                <FormItem className="focus-within:border-default hover:border-default group flex flex-1 border-2 border-zinc-200 bg-zinc-100 transition focus-within:bg-white hover:bg-white">
+                <FormItem className="group flex flex-1 border-2 border-zinc-200 bg-zinc-100 transition focus-within:border-default focus-within:bg-white hover:border-default hover:bg-white">
                   <FormControl>
                     <input
                       placeholder="Ex: Aliança de ouro"
@@ -100,7 +107,7 @@ export function SearchInput({ name }: { name: string }) {
 
                     <button
                       disabled={!field.value}
-                      className="bg-default !mt-0 h-full px-2 text-zinc-50 transition hover:opacity-80 disabled:opacity-70"
+                      className="!mt-0 h-full bg-default px-2 text-zinc-50 transition hover:opacity-80 disabled:opacity-70"
                       type="submit"
                     >
                       <Search strokeWidth={3} size={18} />
@@ -108,7 +115,7 @@ export function SearchInput({ name }: { name: string }) {
                     {pathname === "/search" && (
                       <button
                         onClick={toggleFilter}
-                        className="bg-default !mt-0 flex h-full items-center px-2 font-bold text-zinc-50 transition hover:opacity-80"
+                        className="!mt-0 flex h-full items-center bg-default px-2 font-bold text-zinc-50 transition hover:opacity-80"
                         type="button"
                       >
                         Filtros

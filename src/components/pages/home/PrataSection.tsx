@@ -22,7 +22,7 @@ export function PrataSection({ products }: PrataSectionProps) {
 
   return (
     <section className="flex w-full max-w-screen-lg flex-col items-center p-4 py-10">
-      <Heading as="h2">Prata</Heading>
+      <Heading as="h2">Prata 925</Heading>
       <Carousel
         opts={{
           loop: true,
