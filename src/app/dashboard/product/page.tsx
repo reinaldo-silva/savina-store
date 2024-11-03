@@ -28,6 +28,10 @@ export default function ProductManagerPage() {
   const allCategories = use(getCategories());
   const allProducts = use(getProducts({}));
 
+  if (!allProducts.data) {
+    return null;
+  }
+
   return (
     <div className="flex-1 space-y-4 p-4">
       <div className="flex justify-between">

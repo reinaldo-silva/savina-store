@@ -1,6 +1,6 @@
 "use client";
 import { CategorySelector } from "@/components/CategorySelector";
-import { ImageSelector } from "@/components/ImagesSelctor";
+import { ImageSelector } from "@/components/ImagesSelector";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
