@@ -76,7 +76,7 @@ export function Header({ categories }: HeaderProps) {
                   className={clsx(
                     "font-semibold text-muted-foreground transition hover:text-zinc-800",
                     {
-                      "!text-[#DD5A12] underline":
+                      "!text-default underline":
                         currentCategories === String(id) &&
                         pathname === "/search",
                     },

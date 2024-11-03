@@ -68,7 +68,7 @@ export default function ProductManagerPage() {
             <TableBody>
               {allProducts.data.map((product) => (
                 <TableRow key={product.id}>
-                  <TableCell className="p-2 text-center font-medium">
+                  <TableCell className="w-14 p-2 text-center font-medium">
                     {product.images[0] ? (
                       <Image
                         className="size-10 rounded-sm object-cover"

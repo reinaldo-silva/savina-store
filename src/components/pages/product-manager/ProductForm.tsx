@@ -327,7 +327,7 @@ export function EditProductForm({ categories }: SearchFormProps) {
         {loadingProduct ? (
           <div className="flex h-[400px] flex-1 items-center justify-center">
             <LoaderCircle
-              className="animate-spin text-[#DD5A12] duration-500"
+              className="text-default animate-spin duration-500"
               size={28}
             />
           </div>

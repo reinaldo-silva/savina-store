@@ -77,7 +77,7 @@ export function SearchInput({ name }: { name: string }) {
             name="name"
             render={({ field }) => {
               return (
-                <FormItem className="group flex flex-1 border-2 border-zinc-200 bg-zinc-100 transition focus-within:border-[#DD5A12] focus-within:bg-white hover:border-[#DD5A12] hover:bg-white">
+                <FormItem className="focus-within:border-default hover:border-default group flex flex-1 border-2 border-zinc-200 bg-zinc-100 transition focus-within:bg-white hover:bg-white">
                   <FormControl>
                     <input
                       placeholder="Ex: Aliança de ouro"
@@ -100,7 +100,7 @@ export function SearchInput({ name }: { name: string }) {
 
                     <button
                       disabled={!field.value}
-                      className="!mt-0 h-full bg-[#DD5A12] px-2 text-zinc-50 transition hover:opacity-80 disabled:opacity-70"
+                      className="bg-default !mt-0 h-full px-2 text-zinc-50 transition hover:opacity-80 disabled:opacity-70"
                       type="submit"
                     >
                       <Search strokeWidth={3} size={18} />
@@ -108,7 +108,7 @@ export function SearchInput({ name }: { name: string }) {
                     {pathname === "/search" && (
                       <button
                         onClick={toggleFilter}
-                        className="!mt-0 flex h-full items-center bg-[#DD5A12] px-2 font-bold text-zinc-50 transition hover:opacity-80"
+                        className="bg-default !mt-0 flex h-full items-center px-2 font-bold text-zinc-50 transition hover:opacity-80"
                         type="button"
                       >
                         Filtros

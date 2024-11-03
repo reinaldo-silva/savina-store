@@ -18,6 +18,7 @@ const config: Config = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        default: "#DD5A12",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

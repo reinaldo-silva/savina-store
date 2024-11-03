@@ -38,9 +38,11 @@ export default function ProductDetailPage({
           <Text className="mt-8 text-sm text-muted-foreground">
             Categorias relacionadas
           </Text>
-          <div className="my-2">
+          <div className="my-2 space-x-1">
             {product.data.categories.map((ca, index) => (
-              <Badge key={index}>{ca.name}</Badge>
+              <Badge className="hover:bg-default/20" key={index}>
+                {ca.name}
+              </Badge>
             ))}
           </div>
         </CardDefault>
