@@ -73,7 +73,7 @@ export function CreateProductForm({ categories }: SearchFormProps) {
     try {
       const slugId = await createProduct(data);
 
-      await uploadProductImages(slugId, images);
+      await uploadProductImages(slugId, images || []);
 
       await fetch("/api/revalidate/products", { method: "GET" }).then(() => {
         toast("Produto criado com sucesso!");
