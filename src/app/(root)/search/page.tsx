@@ -13,6 +13,7 @@ export default function SearchPage({
   const defaultFilter = {
     cat: (searchParams.cat || "") as string,
     name: (searchParams.name || "") as string,
+    size: "100",
   };
 
   const allProducts = use(getProducts(defaultFilter));

@@ -28,9 +28,11 @@ interface Product {
 async function getProducts({
   cat = "",
   name = "",
+  size = "",
 }: {
   name?: string;
   cat?: string;
+  size?: string;
 }): Promise<ApiResponse<Product[]>> {
   const params = new URLSearchParams();
 
@@ -40,6 +42,10 @@ async function getProducts({
 
   if (cat) {
     params.append("category_ids", cat);
+  }
+
+  if (size) {
+    params.append("pageSize", size);
   }
 
   const response = await fetch(

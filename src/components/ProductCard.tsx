@@ -19,6 +19,7 @@ export function ProductCard({
           {imageCover ? (
             <Image
               alt={name}
+              priority
               className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
               src={imageCover.image_url}
               width={300}

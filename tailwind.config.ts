@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        title: "var(--font-marcellus)",
+        title: "var(--font-schibsted)",
         encode: "var(--font-encode-sans)",
       },
       colors: {

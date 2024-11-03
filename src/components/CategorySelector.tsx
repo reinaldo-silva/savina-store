@@ -1,9 +1,12 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
-import { Label } from "./ui/label";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Category } from "@/services/categoriesService";
 import { Check, ChevronsUpDown } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Text } from "./Text";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 import {
   Command,
   CommandEmpty,
@@ -12,10 +15,8 @@ import {
   CommandItem,
   CommandList,
 } from "./ui/command";
-import { Category } from "@/services/categoriesService";
-import { Text } from "./Text";
-import { Badge } from "./ui/badge";
-import { useState } from "react";
+import { Label } from "./ui/label";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 interface CategorySelectorProps {
   categories: Category[];
@@ -29,6 +30,7 @@ export function CategorySelector({
   defaultValues = [],
 }: CategorySelectorProps) {
   const [catSelected, setCatSelected] = useState<number[]>(defaultValues);
+  const categoriesParams = useSearchParams().get("cat");
 
   const handleSelectCat = (id: number) => {
     setCatSelected((prevSelected) => {
@@ -41,6 +43,12 @@ export function CategorySelector({
       return newArray;
     });
   };
+
+  useEffect(() => {
+    if (!categoriesParams) {
+      setCatSelected([]);
+    }
+  }, [categoriesParams]);
 
   return (
     <div className="flex flex-col space-y-2">

@@ -1,4 +1,5 @@
 "use client";
+import { ImageLoading } from "@/components/ImageLoading";
 import {
   Carousel,
   CarouselContent,
@@ -9,8 +10,7 @@ import {
 import { Image as IImage } from "@/services/productService";
 import clsx from "clsx";
 import Autoplay from "embla-carousel-autoplay";
-import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 interface CarouselSectionProps {
   images: IImage[];
@@ -30,44 +30,23 @@ export function CarouselSection({ images }: CarouselSectionProps) {
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
       >
-        <CarouselContent className="h-full">
+        <CarouselContent className="h-full justify-center">
           {images.map((img, index) => (
-            <ItemLoading
+            <CarouselItem
               key={index}
-              url={img.image_url}
-              alt={`${img}-${index}`}
-            />
+              className={clsx(
+                "min-h-[300px] sm:basis-1/2 md:basis-1/3 lg:basis-1/4",
+                { "!basis-1/3": images.length === 3 },
+                { "!basis-1/2": images.length === 2 },
+              )}
+            >
+              <ImageLoading url={img.image_url} alt={`${img}-${index}`} />
+            </CarouselItem>
           ))}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
     </section>
-  );
-}
-
-export function ItemLoading({ alt, url }: { url: string; alt: string }) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  return (
-    <CarouselItem className="min-h-[300px] sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-      <div
-        className={clsx("flex h-full flex-1 items-center justify-center", {
-          "animate-pulse bg-zinc-300": isLoading,
-        })}
-      >
-        <Image
-          onLoad={() => {
-            setIsLoading(false);
-          }}
-          priority
-          width={1300}
-          height={1300}
-          src={url}
-          alt={alt}
-          className="h-full object-cover"
-        />
-      </div>
-    </CarouselItem>
   );
 }

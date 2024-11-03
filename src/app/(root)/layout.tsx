@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { FooterNavigation } from "@/components/FooterNavigation";
 import { Header } from "@/components/Header";
 import { getCategories } from "@/services/categoriesService";
@@ -17,9 +18,10 @@ export default function RootLayout({
         <Suspense>
           <Header categories={allCategories.data.slice(0, 4)} />
         </Suspense>
-        <div className="mx-auto flex h-full w-full max-w-screen-xl flex-1 border-x border-zinc-200 bg-white shadow-sm">
+        <div className="mx-auto flex h-full w-full max-w-screen-lg flex-1 border-x border-zinc-200 bg-white shadow-sm">
           {children}
         </div>
+        <Footer categories={allCategories.data} />
         <FooterNavigation />
       </div>
     </RootContextProvider>

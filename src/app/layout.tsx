@@ -1,11 +1,11 @@
 import { Toaster } from "@/components/ui/sonner";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
-import { Encode_Sans, Marcellus_SC } from "next/font/google";
+import { Encode_Sans, Schibsted_Grotesk } from "next/font/google";
 
-const marcellus = Marcellus_SC({
-  weight: ["400"],
-  variable: "--font-marcellus",
+const schibsted = Schibsted_Grotesk({
+  weight: ["900", "800", "700", "600", "500"],
+  variable: "--font-schibsted",
   subsets: ["latin"],
   display: "swap",
 });
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased ${marcellus.variable} ${encodeSans.variable}`}
+        className={`antialiased ${schibsted.variable} ${encodeSans.variable}`}
       >
         {children}
         <Toaster />

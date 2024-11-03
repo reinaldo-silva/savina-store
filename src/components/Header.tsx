@@ -59,15 +59,7 @@ export function Header({ categories }: HeaderProps) {
             </Button>
           </div>
         </header>
-        <div className="mx-auto hidden max-w-screen-xl justify-between px-1 pb-0 md:flex">
-          <div>
-            <Link href="#about">
-              <Button variant="link">Sobre nós</Button>
-            </Link>
-            <Link href="#categories">
-              <Button variant="link">Principais categoria</Button>
-            </Link>
-          </div>
+        <div className="mx-auto hidden max-w-screen-xl justify-center px-1 pb-0 md:flex">
           <div className="">
             {categories.map(({ name, id }, index) => (
               <Link key={index} href={`/search?cat=${id}`}>

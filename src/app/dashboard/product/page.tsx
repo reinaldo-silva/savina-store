@@ -28,7 +28,7 @@ import { Suspense, use } from "react";
 
 export default function ProductManagerPage() {
   const allCategories = use(getCategories());
-  const allProducts = use(getProducts({}));
+  const allProducts = use(getProducts({ size: "100" }));
 
   if (!allProducts.data) {
     return null;
