@@ -17,12 +17,12 @@ export function Header({ categories }: HeaderProps) {
   const currentCategories = useSearchParams().get("cat");
 
   return (
-    <div className="fixed left-0 top-0 z-40 max-h-[133px] w-screen">
+    <div className="fixed left-0 top-0 z-40 max-h-[104px] w-screen md:max-h-[133px]">
       <div className="flex justify-center bg-zinc-950 py-2 text-xs font-bold uppercase text-white">
         Novidades em breve
       </div>
       <div className="border-b bg-white shadow-sm">
-        <header className="mx-auto flex max-h-[72px] w-full max-w-screen-xl items-center justify-between space-x-4 p-4 pb-1">
+        <header className="mx-auto flex max-h-[72px] w-full max-w-screen-xl items-center justify-between space-x-4 p-4 md:pb-1">
           <Link href="/" className="w-[88px]">
             <Image
               className="size-10 min-w-10"
@@ -59,7 +59,7 @@ export function Header({ categories }: HeaderProps) {
             </Button>
           </div>
         </header>
-        <div className="mx-auto flex max-w-screen-xl justify-between px-1 pb-0">
+        <div className="mx-auto hidden max-w-screen-xl justify-between px-1 pb-0 md:flex">
           <div>
             <Link href="#about">
               <Button variant="link">Sobre nós</Button>

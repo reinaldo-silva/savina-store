@@ -13,7 +13,7 @@ export default function RootLayout({
 
   return (
     <RootContextProvider>
-      <div className="max-h-vh flex min-h-screen w-screen flex-col overflow-x-hidden bg-zinc-50 pb-[60px] pt-[133px] md:pb-0">
+      <div className="max-h-vh flex min-h-screen w-screen flex-col overflow-x-hidden bg-zinc-50 pb-[60px] pt-[104px] md:pb-0 md:pt-[133px]">
         <Suspense>
           <Header categories={allCategories.data.slice(0, 4)} />
         </Suspense>
