@@ -36,8 +36,13 @@ export function DeleteDialog({ slugId, productName }: DeleteDialogProps) {
         refresh();
       });
       setIsOpen(false);
-    } catch (error: any) {
-      toast(`Erro: ${error.message}`, { icon: <CircleX /> });
+    } catch (error) {
+      if (error instanceof Error) {
+        toast(`Erro: ${error.message}`, { icon: <CircleX /> });
+      } else {
+        // Em caso de erro não ser uma instância de Error
+        toast(`Erro desconhecido: ${String(error)}`, { icon: <CircleX /> });
+      }
     }
     stop();
   }
