@@ -21,21 +21,21 @@ export function Footer({ categories }: { categories: Category[] }) {
               src="/logo.svg"
             />
           </div>
-          <Heading as="h5" className="text-zinc-100">
+          <Heading as="h5" className="!text-zinc-100">
             Savina acessórios
           </Heading>
         </div>
 
         <Heading
           as="h4"
-          className="mt-10 w-full translate-y-0 text-center text-zinc-100 md:translate-y-8"
+          className="mt-10 w-full translate-y-0 text-center !text-zinc-100 md:translate-y-8"
         >
           Em breve
         </Heading>
         <section className="flex flex-col items-center justify-around gap-4 py-8 text-zinc-100 md:flex-row">
           <div className="flex flex-col items-center gap-2">
             <Package size={80} strokeWidth={1} />
-            <Heading as="h5" className="text-center text-zinc-100">
+            <Heading as="h5" className="text-center !text-zinc-100">
               Entrega em Todo o Brasil
             </Heading>
             <Text className="text-center" size="sm">
@@ -49,7 +49,7 @@ export function Footer({ categories }: { categories: Category[] }) {
           />
           <div className="flex flex-col items-center gap-2">
             <CreditCard size={80} strokeWidth={1} />
-            <Heading as="h5" className="text-zinc-100">
+            <Heading as="h5" className="!text-zinc-100">
               Compre Online
             </Heading>
             <Text className="text-center" size="sm">
@@ -63,7 +63,7 @@ export function Footer({ categories }: { categories: Category[] }) {
 
       <div className="mx-auto flex max-w-screen-lg flex-col-reverse justify-between gap-4 px-8 py-10 md:flex-row">
         <div className="">
-          <Heading as="h4" className="text-zinc-100">
+          <Heading as="h4" className="!text-zinc-100">
             Nossos canais de comunicação
           </Heading>
 
@@ -85,7 +85,7 @@ export function Footer({ categories }: { categories: Category[] }) {
 
         <div>
           <div>
-            <Heading as="h4" className="text-zinc-100">
+            <Heading as="h4" className="!text-zinc-100">
               Categorias do catálogo
             </Heading>
 
