@@ -33,8 +33,10 @@ jobs:
             # Build da imagem Docker
             docker build -t nextjs-app .
 
-            # Rodar o novo container Docker
-            docker run -d -p 80:3000 --name nextjs-app nextjs-app
+            # Rodar o novo container Docker com a variável de ambiente
+            docker run -d -p 80:3000 --name nextjs-app \
+              -e NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} \
+              nextjs-app
 
             docker system prune -af
           EOF

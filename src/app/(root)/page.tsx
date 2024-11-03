@@ -25,7 +25,7 @@ export default function HomePage() {
           {allCategories.data.slice(0, 3).map((cat, index) => (
             <div key={index}>
               <Image
-                src="/img4.avif"
+                src="/img4.png"
                 width={600}
                 height={600}
                 alt="img"
@@ -68,7 +68,7 @@ export default function HomePage() {
 
         <div className="w-[400px]">
           <Image
-            src="/img5.avif"
+            src="/img5.png"
             width={600}
             height={600}
             alt="img"
