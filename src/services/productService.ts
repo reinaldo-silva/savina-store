@@ -157,6 +157,9 @@ async function deleteProduct(productId: string): Promise<void> {
     `${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`,
     {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
     },
   );
 

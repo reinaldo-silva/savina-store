@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { useLoading } from "@/hook/useLoading";
 import { deleteProduct } from "@/services/productService";
-import { Trash2 } from "lucide-react";
+import { CircleX, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -36,8 +36,8 @@ export function DeleteDialog({ slugId, productName }: DeleteDialogProps) {
         refresh();
       });
       setIsOpen(false);
-    } catch (error) {
-      console.error("Erro:", error);
+    } catch (error: any) {
+      toast(`Erro: ${error.message}`, { icon: <CircleX /> });
     }
     stop();
   }
