@@ -110,7 +110,7 @@ export function CreateProductForm({ categories }: SearchFormProps) {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-3 gap-2"
+            className="grid grid-cols-3 gap-2 p-1"
           >
             <FormField
               control={form.control}
@@ -177,7 +177,7 @@ export function CreateProductForm({ categories }: SearchFormProps) {
                   <FormControl>
                     <Textarea
                       placeholder="Descrição do produto"
-                      rows={6}
+                      rows={12}
                       {...field}
                     />
                   </FormControl>
@@ -335,7 +335,7 @@ export function EditProductForm({ categories }: SearchFormProps) {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="grid grid-cols-3 gap-2"
+              className="grid grid-cols-3 gap-2 p-1"
             >
               <FormField
                 control={form.control}
@@ -406,7 +406,7 @@ export function EditProductForm({ categories }: SearchFormProps) {
                     <FormControl>
                       <Textarea
                         placeholder="Descrição do produto"
-                        rows={6}
+                        rows={12}
                         {...field}
                       />
                     </FormControl>
