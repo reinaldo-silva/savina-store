@@ -6,6 +6,7 @@ import {
   CreateProductForm,
   EditProductForm,
 } from "@/components/pages/product-manager/ProductForm";
+import { RefreshData } from "@/components/RefreshData";
 import { Text } from "@/components/Text";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -20,7 +21,7 @@ import {
 } from "@/components/ui/table";
 import { getCategories } from "@/services/categoriesService";
 import { getProducts } from "@/services/productService";
-import { Frown, ImageOff, Pencil } from "lucide-react";
+import { Frown, ImageOff, LinkIcon, Pencil } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense, use } from "react";
@@ -38,10 +39,13 @@ export default function ProductManagerPage() {
       <div className="flex justify-between">
         <Heading as="h4">Gestão de produtos</Heading>
 
-        <Suspense>
-          <CreateProductForm categories={allCategories.data} />
-          <EditProductForm categories={allCategories.data} />
-        </Suspense>
+        <div className="flex items-center gap-2">
+          <RefreshData />
+          <Suspense>
+            <CreateProductForm categories={allCategories.data} />
+            <EditProductForm categories={allCategories.data} />
+          </Suspense>
+        </div>
       </div>
       <ScrollArea className="w-[calc(100vw-16px)] md:w-[calc(100vw-32px)]">
         <CardDefault className="!p-0">
@@ -83,7 +87,17 @@ export default function ProductManagerPage() {
                       </div>
                     )}
                   </TableCell>
-                  <TableCell className="font-medium">{product.slug}</TableCell>
+                  <TableCell className="p-1">
+                    <Button variant="link">
+                      <Link
+                        href={`/product/${product.slug}`}
+                        className="flex items-center gap-2"
+                      >
+                        {product.slug}
+                        <LinkIcon size={16} strokeWidth={3} />
+                      </Link>
+                    </Button>
+                  </TableCell>
                   <TableCell>
                     <Text className="max-w-[200px] truncate">
                       {product.name}
