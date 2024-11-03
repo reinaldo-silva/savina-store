@@ -47,7 +47,7 @@ export default function ProductManagerPage() {
           </Suspense>
         </div>
       </div>
-      <ScrollArea className="w-[calc(100vw-16px)] md:w-[calc(100vw-32px)]">
+      <ScrollArea className="w-[calc(100vw-16px)] md:w-[calc(100vw-32px)] lg:w-auto">
         <CardDefault className="!p-0">
           <Table>
             <TableCaption className="pb-4">

@@ -64,7 +64,7 @@ export function DeleteDialog({ slugId, productName }: DeleteDialogProps) {
             </DialogDescription>
           </DialogHeader>
 
-          <DialogFooter>
+          <DialogFooter className="mt-2 gap-2">
             <Button
               onClick={handleDelete}
               isLoading={isLoading}
