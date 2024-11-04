@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        title: "var(--font-schibsted)",
-        encode: "var(--font-encode-sans)",
+        title: "var(--font-poppins)",
+        text: "var(--font-nunito)",
       },
       colors: {
         primary: {

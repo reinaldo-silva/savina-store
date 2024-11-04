@@ -12,6 +12,7 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(
       <p
         ref={ref}
         className={clsx(
+          "font-text",
           {
             "text-xs": size === "xs",
             "text-sm": size === "sm",

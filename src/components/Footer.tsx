@@ -68,16 +68,16 @@ export function Footer({ categories }: { categories: Category[] }) {
           </Heading>
 
           <div className="flex flex-col items-start">
-            <Link href="http://instagram.com/savina.acessorios">
+            <Link href="http://instagram.com/savina.acessorios" target="_blank">
               <Button variant="link" className="p-0 text-zinc-300">
                 <Instagram />
-                <Text>instagram.com/savina.acessorios</Text>
+                <Text size="sm">instagram.com/savina.acessorios</Text>
               </Button>
             </Link>
-            <Link href="http://instagram.com/savina.acessorios">
+            <Link href="mailto:marialuizatomicioli@gmail.com" target="_blank">
               <Button variant="link" className="p-0 text-zinc-300">
                 <Mail />
-                <Text>marialuizatomicioli@gmail.com</Text>
+                <Text size="sm">marialuizatomicioli@gmail.com</Text>
               </Button>
             </Link>
           </div>
@@ -93,7 +93,7 @@ export function Footer({ categories }: { categories: Category[] }) {
               {categories.map((e, index) => (
                 <Link key={index} href={`/search?cat=${e.id}`}>
                   <Button variant="link" className="p-0 py-2 text-zinc-300">
-                    <Text>{e.name}</Text>
+                    <Text size="sm">{e.name}</Text>
                   </Button>
                 </Link>
               ))}

@@ -2,8 +2,11 @@ import { CardDefault } from "@/components/CardDefault";
 import { Heading } from "@/components/Heading";
 import { ImageLoading } from "@/components/ImageLoading";
 import { PrataSection } from "@/components/pages/home/PrataSection";
+import { Text } from "@/components/Text";
+import { Button } from "@/components/ui/button";
 import { getCategories } from "@/services/categoriesService";
 import { getProducts } from "@/services/productService";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
@@ -14,21 +17,22 @@ export default function HomePage() {
 
   return (
     <div className="w-full">
-      <section className="grid h-[400px] grid-cols-3 grid-rows-3 gap-2 p-1">
-        <div className="col-span-2 row-span-3 bg-zinc-100">descricao</div>
-        <div className="col-start-3 row-span-3 grid grid-cols-2">
-          <div className="col-span-2">baixo</div>
-          <div>cima</div>
-          <div className="h-[100px] border-2 border-zinc-100 p-3">
-            <Image
-              className="h-full w-full"
-              width={200}
-              height={200}
-              alt=""
-              src="/logo.svg"
-            />
-          </div>
-        </div>
+      <section className="relative h-[220px] border border-zinc-300 sm:h-[300px] md:h-[460px]">
+        <Image
+          className="h-full w-full object-cover object-left-bottom"
+          width={1280}
+          height={500}
+          alt=""
+          src="/fullbanner.png"
+        />
+        <Link
+          className="absolute bottom-7 left-6 sm:bottom-10 sm:left-10 md:bottom-14 md:left-14"
+          href="/search"
+        >
+          <Button className="uppercase">
+            Conferir <ChevronRight />
+          </Button>
+        </Link>
       </section>
       <section className="flex flex-col justify-center p-6 py-10">
         <Heading as="h2" className="text-center">
@@ -50,17 +54,17 @@ export default function HomePage() {
                   />
                 </Link>
               </CardDefault>
-              <h3 className="mt-2 text-center font-encode text-lg font-medium uppercase">
+              <Text className="mt-2 text-center font-medium uppercase">
                 {cat.name}
-              </h3>
+              </Text>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="flex justify-center bg-default/20 p-6 px-0 md:px-6">
+      <section className="flex justify-center border-y-2 border-dashed border-zinc-400 bg-orange-400/80 p-6 px-0 md:px-6">
         <Image
-          className="w-auto border-2 border-zinc-200 object-cover shadow md:w-[400px]"
+          className="w-auto border-2 border-zinc-200 object-cover shadow md:w-[500px]"
           alt="Folhado anúncio"
           src="/folhado2.png"
           width={800}

@@ -12,9 +12,9 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
       <Tag
         ref={ref}
         className={clsx(
-          "text-balance font-title font-bold uppercase text-zinc-900",
+          "text-balance font-title font-semibold uppercase text-zinc-900",
           {
-            "text-4xl": Tag === "h1",
+            "text-4xl font-extrabold": Tag === "h1",
             "text-3xl": Tag === "h2",
             "text-2xl": Tag === "h3",
             "text-xl": Tag === "h4",

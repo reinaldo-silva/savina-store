@@ -1,19 +1,20 @@
 import { Toaster } from "@/components/ui/sonner";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
-import { Encode_Sans, Schibsted_Grotesk } from "next/font/google";
+import { Nunito, Poppins } from "next/font/google";
 
-const schibsted = Schibsted_Grotesk({
-  weight: ["900", "800", "700", "600", "500"],
-  variable: "--font-schibsted",
+const poppins = Poppins({
+  weight: ["400", "900", "800", "700", "600", "500", "300", "200", "100"],
+  variable: "--font-poppins",
   subsets: ["latin"],
   display: "swap",
 });
 
-const encodeSans = Encode_Sans({
-  variable: "--font-encode-sans",
+const nunito = Nunito({
+  variable: "--font-nunito",
   subsets: ["latin"],
   display: "swap",
+  weight: ["1000", "900", "800", "700", "600", "500", "400", "300", "200"],
 });
 
 export const metadata: Metadata = {
@@ -29,9 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased ${schibsted.variable} ${encodeSans.variable}`}
-      >
+      <body className={`antialiased ${poppins.variable} ${nunito.variable}`}>
         {children}
         <Toaster />
       </body>
