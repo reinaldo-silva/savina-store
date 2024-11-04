@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getProductBySlug } from "@/services/productService";
 import { formatPrice } from "@/utils/formatPrice";
-import { Heart, Instagram } from "lucide-react";
+import { CircleCheck, CircleX, Heart, Instagram } from "lucide-react";
+import Link from "next/link";
 import { use } from "react";
 
 export default function ProductDetailPage({
@@ -61,12 +62,22 @@ export default function ProductDetailPage({
             {formatPrice(product.data.price)}
           </Heading>
 
-          <Button className="mt-4 w-full">
-            {isAvailable ? "Disponível" : "Esgotado"}
-          </Button>
-          <Button className="mt-4 w-full" disabled={!isAvailable}>
-            Solicitar no Instagram <Instagram />
-          </Button>
+          <div className="mt-4 flex h-10 w-full items-center justify-center gap-2 border-2 border-zinc-800">
+            <Text>{isAvailable ? "Disponível" : "Esgotado"}</Text>
+            {isAvailable ? (
+              <CircleCheck className="text-green-500" size={20} />
+            ) : (
+              <CircleX className="text-red-500" size={20} />
+            )}
+          </div>
+          <Link
+            href={isAvailable ? "http://instagram.com/savina.acessorios" : "#"}
+            target={isAvailable ? "_blank" : "_top"}
+          >
+            <Button className="mt-4 w-full" disabled={!isAvailable}>
+              Solicitar no Instagram <Instagram />
+            </Button>
+          </Link>
         </CardDefault>
       </section>
     </div>
