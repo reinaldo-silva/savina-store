@@ -36,15 +36,15 @@ export function Header({ categories }: HeaderProps) {
             />
           </Link>
 
-          {pathname === "/search" && (
-            <Image
-              src="/desc.svg"
-              className="h-8 w-[100px] object-contain md:w-[200px]"
-              alt="Logo"
-              width={400}
-              height={400}
-            />
-          )}
+          <Image
+            src="/desc.svg"
+            className={clsx("flex h-8 w-[70px] object-contain md:w-[200px]", {
+              "md:hidden": pathname !== "/search",
+            })}
+            alt="Logo"
+            width={400}
+            height={400}
+          />
 
           {pathname !== "/search" && <SearchInput name="" />}
           <div className="hidden items-center space-x-2 md:flex">

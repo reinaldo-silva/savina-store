@@ -17,7 +17,7 @@ export default function HomePage() {
 
   return (
     <div className="w-full">
-      <section className="relative h-[220px] border border-zinc-300 sm:h-[300px] md:h-[460px]">
+      <section className="relative h-[220px] sm:h-[300px] md:h-[460px]">
         <Image
           className="h-full w-full object-cover object-left-bottom"
           width={1280}
