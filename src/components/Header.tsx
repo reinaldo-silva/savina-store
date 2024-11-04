@@ -23,9 +23,9 @@ export function Header({ categories }: HeaderProps) {
       </div>
       <div className="border-b bg-white shadow-sm">
         <header className="mx-auto flex max-h-[72px] w-full max-w-screen-xl items-center justify-between space-x-4 p-4 md:pb-1">
-          <Link href="/" className="w-[88px]">
+          <Link href="/" className="flex size-10 items-center justify-center">
             <Image
-              className="size-10 min-w-10"
+              className="size-8"
               src="/logo.svg"
               alt="Logo"
               width={400}
@@ -36,7 +36,7 @@ export function Header({ categories }: HeaderProps) {
           {pathname === "/search" && (
             <Image
               src="/desc.svg"
-              className="h-8 w-[200px] object-contain"
+              className="h-8 w-[100px] object-contain md:w-[200px]"
               alt="Logo"
               width={400}
               height={400}
@@ -44,17 +44,11 @@ export function Header({ categories }: HeaderProps) {
           )}
 
           {pathname !== "/search" && <SearchInput name="" />}
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="ghost"
-              className="size-10 rounded-full border-2 bg-zinc-100 shadow"
-            >
+          <div className="hidden items-center space-x-2 md:flex">
+            <Button variant="ghost" className="size-10" disabled>
               <User size={24} />
             </Button>
-            <Button
-              variant="ghost"
-              className="size-10 rounded-full border-2 bg-zinc-100 shadow"
-            >
+            <Button variant="ghost" className="size-10" disabled>
               <ShoppingCart size={24} />
             </Button>
           </div>

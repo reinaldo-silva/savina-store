@@ -2,6 +2,7 @@
 import { useRootContext } from "@/app/(root)/RootContext";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
+import { useScrollToTopOnRouteChange } from "@/hook/useScrollToTopOnRouteChange";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { animated, useSpring } from "@react-spring/web";
 import clsx from "clsx";
@@ -16,6 +17,7 @@ const FormSchema = z.object({
 });
 
 export function SearchInput({ name }: { name: string }) {
+  useScrollToTopOnRouteChange();
   const { push } = useRouter();
   const { toggleFilter, filterOpen } = useRootContext();
   const pathname = usePathname();

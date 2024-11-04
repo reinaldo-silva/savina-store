@@ -35,9 +35,9 @@ const FooterNavigation = () => {
           Icon={ShoppingCart}
           to={"/shop-cart"}
           description="Carrinho"
-          notifyNumber={2}
+          disabled
         />
-        <IconButton Icon={User} to={"/profile"} description="Perfil" />
+        <IconButton Icon={User} to={"/profile"} description="Perfil" disabled />
       </nav>
     </animated.footer>
   );
@@ -50,9 +50,16 @@ interface IconButtonProps {
   description: string;
   to?: Url;
   notifyNumber?: number;
+  disabled?: boolean;
 }
 
-function IconButton({ Icon, to, description, notifyNumber }: IconButtonProps) {
+function IconButton({
+  Icon,
+  to,
+  description,
+  notifyNumber,
+  disabled,
+}: IconButtonProps) {
   const pathname = usePathname();
   const isActive = pathname === to;
 
@@ -77,7 +84,7 @@ function IconButton({ Icon, to, description, notifyNumber }: IconButtonProps) {
   });
 
   return (
-    <Link href={to || pathname} className="relative">
+    <Link href={disabled ? "#" : to || pathname} className="relative">
       <animated.div
         style={contentSpring}
         className={clsx(

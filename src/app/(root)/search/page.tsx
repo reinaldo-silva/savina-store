@@ -24,7 +24,7 @@ export default function SearchPage({
   }
 
   return (
-    <div className="flex max-h-[calc(100svh-133px)] flex-1">
+    <div className="flex max-h-[calc(100svh-164px)] flex-1 md:max-h-[calc(100svh-133px)]">
       <div className="flex flex-col border-r bg-zinc-100">
         <SearchForm
           categories={allCategories.data}
