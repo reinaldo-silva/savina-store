@@ -25,19 +25,19 @@ export function CarouselSection({ images }: CarouselSectionProps) {
         opts={{
           loop: true,
         }}
-        className="flex h-full w-full"
+        className="flex h-full w-full justify-center"
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
       >
-        <CarouselContent className="h-full justify-center">
+        <CarouselContent>
           {images.map((img, index) => (
             <CarouselItem
               key={index}
               className={clsx(
                 "min-h-[300px] sm:basis-1/2 md:basis-1/3 lg:basis-1/4",
-                { "!basis-1/3": images.length === 3 },
-                { "!basis-1/2": images.length === 2 },
+                { "sm:!basis-1/3": images.length === 3 },
+                { "sm:!basis-1/2": images.length === 2 },
               )}
             >
               <ImageLoading url={img.image_url} alt={`${img}-${index}`} />
