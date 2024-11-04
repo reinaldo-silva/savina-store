@@ -62,7 +62,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="flex justify-center border-y-2 border-dashed border-zinc-400 bg-orange-400/80 p-6 px-0 md:px-6">
+      <section className="flex justify-center bg-orange-400/80 p-6 px-0 md:px-6">
         <Image
           className="w-auto border-2 border-zinc-200 object-cover shadow md:w-[500px]"
           alt="Folhado anúncio"
