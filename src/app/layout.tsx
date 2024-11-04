@@ -18,7 +18,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Savina acessórios",
+  title: "Savina | Acessórios femininos",
   description:
     "Descubra a elegância e o estilo com a Savina Acessórios. Explore nossa coleção exclusiva de acessórios que realçam sua beleza e complementam seu estilo pessoal.",
 };
