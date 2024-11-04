@@ -23,7 +23,10 @@ export function Header({ categories }: HeaderProps) {
       </div>
       <div className="border-b bg-white shadow-sm">
         <header className="mx-auto flex max-h-[72px] w-full max-w-screen-xl items-center justify-between space-x-4 p-4 md:pb-1">
-          <Link href="/" className="flex size-10 items-center justify-center">
+          <Link
+            href="/"
+            className="flex size-10 w-[88px] items-center justify-start"
+          >
             <Image
               className="size-8"
               src="/logo.svg"
