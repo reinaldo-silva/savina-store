@@ -3,9 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '18.221.8.21',
-        port: '8080',
+        protocol: 'https',
+        hostname: 'api.savinaacessorios.com.br',
       },
       {
         protocol: 'http',
