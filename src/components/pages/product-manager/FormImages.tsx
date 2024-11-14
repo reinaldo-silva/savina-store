@@ -1,5 +1,6 @@
 "use client";
 import { ImageSelector } from "@/components/ImagesSelector";
+import { Text } from "@/components/Text";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useLoading } from "@/hook/useLoading";
+import { deleteImage } from "@/services/imageService";
 import {
   getProductImagesBySlug,
   Image as ImageType,
@@ -19,13 +21,11 @@ import {
   uploadProductImages,
 } from "@/services/productService";
 import { formatDate } from "@/utils/formatDate";
-import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
-import { useProductFormContext } from "./FormContext";
-import { Trash2, Wallpaper } from "lucide-react";
-import { Text } from "@/components/Text";
 import clsx from "clsx";
-import { deleteImage } from "@/services/imageService";
+import { Trash2, Wallpaper } from "lucide-react";
+import Image from "next/image";
+import { FormEvent, useCallback, useEffect, useState } from "react";
+import { useProductFormContext } from "./FormContext";
 
 export function FormImages() {
   const [images, setImages] = useState<(ImageType | File)[]>([]);
@@ -35,14 +35,14 @@ export function FormImages() {
     currentStatus: { slugId },
   } = useProductFormContext();
 
-  async function getImages() {
+  const getImages = useCallback(async () => {
     start();
     await getProductImagesBySlug({ slug: slugId })
       .then((response) => {
         setImages(response.data);
       })
       .finally(stop);
-  }
+  }, [slugId, start, stop]);
 
   async function removeImage(index: number) {
     const newImages = images.filter((_, i) => i !== index);
@@ -65,7 +65,7 @@ export function FormImages() {
     if (slugId) {
       getImages();
     }
-  }, [slugId]);
+  }, [getImages, slugId]);
 
   return (
     <form onSubmit={handleUploadImages}>

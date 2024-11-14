@@ -1,14 +1,22 @@
 import { FooterNavigation } from "@/components/FooterNavigation";
 import { Button } from "@/components/ui/button";
-import { User } from "lucide-react";
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const token = cookies().get("APP_SAVINA:token")?.value;
+  const name = cookies().get("APP_SAVINA:name")?.value;
+
+  if (!token || !name) {
+    redirect("/auth/sign-in");
+  }
+
   return (
     <div className="max-h-vh flex min-h-screen w-screen flex-col overflow-x-hidden bg-zinc-50 pb-[60px] pt-[104px] md:pb-0">
       <div className="fixed left-0 top-0 z-40 max-h-[104px] w-screen">
@@ -32,7 +40,7 @@ export default function DashboardLayout({
                 variant="ghost"
                 className="size-10 rounded-full border-2 bg-zinc-100 shadow"
               >
-                <User size={24} />
+                {name[0]}
               </Button>
             </div>
           </header>
