@@ -34,7 +34,7 @@ jobs:
             docker build --build-arg NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} -t nextjs-app .
 
             # Rodar o novo container Docker
-            docker run -d -p 3000:3000 --name nextjs-app nextjs-app
+            docker run -d --restart always -p 3000:3000 --name nextjs-app nextjs-app
 
             docker system prune -af
           EOF

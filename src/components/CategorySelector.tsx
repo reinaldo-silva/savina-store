@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import { Category } from "@/services/categoriesService";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Text } from "./Text";
 import { Badge } from "./ui/badge";
@@ -31,6 +31,7 @@ export function CategorySelector({
 }: CategorySelectorProps) {
   const [catSelected, setCatSelected] = useState<number[]>(defaultValues);
   const categoriesParams = useSearchParams().get("cat");
+  const pathname = usePathname();
 
   const handleSelectCat = (id: number) => {
     setCatSelected((prevSelected) => {
@@ -45,10 +46,10 @@ export function CategorySelector({
   };
 
   useEffect(() => {
-    if (!categoriesParams) {
+    if (!categoriesParams && pathname === "/search") {
       setCatSelected([]);
     }
-  }, [categoriesParams]);
+  }, [categoriesParams, pathname]);
 
   return (
     <div className="flex flex-col space-y-2">

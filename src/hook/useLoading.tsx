@@ -1,8 +1,8 @@
 "use client";
 import { useCallback, useState } from "react";
 
-export const useLoading = () => {
-  const [isLoading, setIsLoading] = useState(false);
+export const useLoading = (startValue = false) => {
+  const [isLoading, setIsLoading] = useState(startValue);
 
   const start = useCallback(() => {
     setIsLoading(true);

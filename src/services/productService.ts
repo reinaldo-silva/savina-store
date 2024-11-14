@@ -81,6 +81,25 @@ async function getProductBySlug({
   return response.json();
 }
 
+async function getProductImagesBySlug({
+  slug,
+}: {
+  slug: string;
+}): Promise<ApiResponse<Image[]>> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/${slug}/images`,
+    {
+      next: { revalidate: 120, tags: ["products"] },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Falha na requisição");
+  }
+
+  return response.json();
+}
+
 async function createProduct(
   productData: Omit<
     Product,
@@ -115,8 +134,6 @@ async function updateProduct(
     categories: { id: number }[];
   },
 ): Promise<void> {
-  console.log(productData);
-
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/${productSlug}`,
     {
@@ -158,6 +175,22 @@ async function uploadProductImages(
   }
 }
 
+async function setProductCoverImage(
+  slugId: string,
+  publicId: string,
+): Promise<void> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/${slugId}/cover/${publicId}`,
+    {
+      method: "PATCH",
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Falha ao definir o cover");
+  }
+}
+
 async function deleteProduct(productId: string): Promise<void> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`,
@@ -181,6 +214,8 @@ export {
   uploadProductImages,
   deleteProduct,
   updateProduct,
+  getProductImagesBySlug,
+  setProductCoverImage,
 };
 
 export type { Image, Product };
