@@ -14,19 +14,20 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useLoading } from "@/hook/useLoading";
 import { Category } from "@/services/categoriesService";
+import {
+  createProduct,
+  getProductBySlugToAdmin,
+  updateProduct,
+} from "@/services/productService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoaderCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { parseCookies } from "nookies";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { useProductFormContext } from "./FormContext";
-import { useEffect } from "react";
-import {
-  createProduct,
-  getProductBySlug,
-  updateProduct,
-} from "@/services/productService";
 
 interface FormDataProps {
   categories: Category[];
@@ -98,10 +99,15 @@ export function FormData({ categories, openDialog }: FormDataProps) {
   }
 
   useEffect(() => {
+    const cookies = parseCookies();
+
     if (page === "EDIT") {
       openDialog();
       startLoadingProduct();
-      getProductBySlug({ slug: slugId })
+      getProductBySlugToAdmin({
+        slug: slugId,
+        token: cookies["APP_SAVINA:token"],
+      })
         .then((response) => {
           const {
             name,

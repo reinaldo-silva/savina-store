@@ -62,6 +62,46 @@ async function getProducts({
   return response.json();
 }
 
+async function getProductsToAdmin({
+  cat = "",
+  name = "",
+  size = "",
+  token,
+}: {
+  token: string;
+  name?: string;
+  cat?: string;
+  size?: string;
+}): Promise<ApiResponse<Product[]>> {
+  const params = new URLSearchParams();
+
+  if (name) {
+    params.append("name", name);
+  }
+
+  if (cat) {
+    params.append("category_ids", cat);
+  }
+
+  if (size) {
+    params.append("pageSize", size);
+  }
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/to-admin?${params.toString()}`,
+    {
+      next: { revalidate: 120, tags: ["products"] },
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Falha na requisição");
+  }
+
+  return response.json();
+}
+
 async function getProductBySlug({
   slug,
 }: {
@@ -71,6 +111,28 @@ async function getProductBySlug({
     `${process.env.NEXT_PUBLIC_API_URL}/products/${slug}`,
     {
       next: { revalidate: 120, tags: ["products"] },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error("Falha na requisição");
+  }
+
+  return response.json();
+}
+
+async function getProductBySlugToAdmin({
+  slug,
+  token,
+}: {
+  slug: string;
+  token: string;
+}): Promise<ApiResponse<Product>> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/to-admin/${slug}`,
+    {
+      next: { revalidate: 120, tags: ["products"] },
+      headers: { Authorization: `Bearer ${token}` },
     },
   );
 
@@ -216,6 +278,8 @@ export {
   updateProduct,
   getProductImagesBySlug,
   setProductCoverImage,
+  getProductsToAdmin,
+  getProductBySlugToAdmin,
 };
 
 export type { Image, Product };

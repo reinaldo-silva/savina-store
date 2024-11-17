@@ -21,15 +21,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getCategories } from "@/services/categoriesService";
-import { getProducts } from "@/services/productService";
+import { getProductsToAdmin } from "@/services/productService";
 import { Frown, ImageOff, LinkIcon } from "lucide-react";
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense, use } from "react";
 
 export default function ProductManagerPage() {
+  const token = cookies().get("APP_SAVINA:token")?.value ?? "";
   const allCategories = use(getCategories());
-  const allProducts = use(getProducts({ size: "100" }));
+  const allProducts = use(getProductsToAdmin({ size: "100", token }));
 
   if (!allProducts.data) {
     return null;
