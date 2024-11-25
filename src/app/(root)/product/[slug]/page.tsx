@@ -8,6 +8,7 @@ import { getProductBySlug } from "@/services/productService";
 import { formatPrice } from "@/utils/formatPrice";
 import { CircleCheck, CircleX, Heart, Instagram } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { use } from "react";
 
 export default function ProductDetailPage({
@@ -16,6 +17,10 @@ export default function ProductDetailPage({
   params: { slug: string };
 }) {
   const product = use(getProductBySlug({ slug }));
+
+  if (!product.data) {
+    redirect("/");
+  }
 
   const isAvailable = product.data.stock > 0;
 
