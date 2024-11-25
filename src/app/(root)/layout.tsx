@@ -16,12 +16,12 @@ export default function RootLayout({
     <RootContextProvider>
       <div className="max-h-vh flex min-h-screen w-screen flex-col overflow-x-hidden bg-zinc-50 pb-[60px] pt-[104px] md:pb-0 md:pt-[133px]">
         <Suspense>
-          <Header categories={allCategories.data.slice(0, 4)} />
+          <Header categories={(allCategories.data ?? []).slice(0, 4)} />
         </Suspense>
         <div className="mx-auto flex h-full w-full max-w-screen-lg flex-1 border-x border-zinc-200 bg-white shadow-sm">
           {children}
         </div>
-        <Footer categories={allCategories.data} />
+        <Footer categories={allCategories.data ?? []} />
         <FooterNavigation />
       </div>
     </RootContextProvider>

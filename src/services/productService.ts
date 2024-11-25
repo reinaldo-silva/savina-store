@@ -23,6 +23,7 @@ interface Product {
   categories: Category[];
   created_at: string;
   updated_at: string;
+  available: boolean;
 }
 
 async function getProducts({
@@ -145,13 +146,16 @@ async function getProductBySlugToAdmin({
 
 async function getProductImagesBySlug({
   slug,
+  token,
 }: {
   slug: string;
+  token: string;
 }): Promise<ApiResponse<Image[]>> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/${slug}/images`,
     {
       next: { revalidate: 120, tags: ["products"] },
+      headers: { Authorization: `Bearer ${token}` },
     },
   );
 
@@ -162,20 +166,31 @@ async function getProductImagesBySlug({
   return response.json();
 }
 
-async function createProduct(
-  productData: Omit<
+async function createProduct({
+  data,
+  token,
+}: {
+  data: Omit<
     Product,
-    "categories" | "created_at" | "updated_at" | "slug" | "id" | "images"
+    | "categories"
+    | "created_at"
+    | "updated_at"
+    | "slug"
+    | "id"
+    | "images"
+    | "available"
   > & {
     categories: { id: number }[];
-  },
-): Promise<string> {
+  };
+  token: string;
+}): Promise<string> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(productData),
+    body: JSON.stringify(data),
   });
 
   if (!response.ok) {
@@ -191,10 +206,17 @@ async function updateProduct(
   productSlug: string,
   productData: Omit<
     Product,
-    "categories" | "created_at" | "updated_at" | "slug" | "id" | "images"
+    | "categories"
+    | "created_at"
+    | "updated_at"
+    | "slug"
+    | "id"
+    | "images"
+    | "available"
   > & {
     categories: { id: number }[];
   },
+  token: string,
 ): Promise<void> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/${productSlug}`,
@@ -202,6 +224,7 @@ async function updateProduct(
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(productData),
     },
@@ -217,6 +240,7 @@ async function updateProduct(
 async function uploadProductImages(
   productId: string,
   images: File[],
+  token: string,
 ): Promise<void> {
   const form = new FormData();
 
@@ -229,6 +253,7 @@ async function uploadProductImages(
     {
       method: "PATCH",
       body: form,
+      headers: { Authorization: `Bearer ${token}` },
     },
   );
 
@@ -240,16 +265,33 @@ async function uploadProductImages(
 async function setProductCoverImage(
   slugId: string,
   publicId: string,
+  token: string,
 ): Promise<void> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/${slugId}/cover/${publicId}`,
     {
       method: "PATCH",
+      headers: { Authorization: `Bearer ${token}` },
     },
   );
 
   if (!response.ok) {
     throw new Error("Falha ao definir o cover");
+  }
+}
+
+async function switchAvailable(slugId: string, token: string): Promise<void> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/${slugId}/available/switch`,
+    {
+      method: "PATCH",
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
+
+  if (!response.ok) {
+    const res = await response.json();
+    throw new Error(res.message);
   }
 }
 
@@ -280,6 +322,7 @@ export {
   setProductCoverImage,
   getProductsToAdmin,
   getProductBySlugToAdmin,
+  switchAvailable,
 };
 
 export type { Image, Product };

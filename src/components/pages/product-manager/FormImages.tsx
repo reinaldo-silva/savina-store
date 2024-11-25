@@ -24,12 +24,15 @@ import { formatDate } from "@/utils/formatDate";
 import clsx from "clsx";
 import { Trash2, Wallpaper } from "lucide-react";
 import Image from "next/image";
+import { parseCookies } from "nookies";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { useProductFormContext } from "./FormContext";
 
 export function FormImages() {
   const [images, setImages] = useState<(ImageType | File)[]>([]);
   const { isLoading, start, stop } = useLoading();
+  const cookies = parseCookies();
+  const token = cookies["APP_SAVINA:token"];
 
   const {
     currentStatus: { slugId },
@@ -37,12 +40,12 @@ export function FormImages() {
 
   const getImages = useCallback(async () => {
     start();
-    await getProductImagesBySlug({ slug: slugId })
+    await getProductImagesBySlug({ slug: slugId, token })
       .then((response) => {
-        setImages(response.data);
+        if (response.data) setImages(response.data);
       })
       .finally(stop);
-  }, [slugId, start, stop]);
+  }, [slugId, start, stop, token]);
 
   async function removeImage(index: number) {
     const newImages = images.filter((_, i) => i !== index);
@@ -56,6 +59,7 @@ export function FormImages() {
     await uploadProductImages(
       slugId,
       images.filter((e) => e instanceof File),
+      token,
     ).finally(stop);
 
     await getImages();
@@ -84,7 +88,7 @@ export function FormImages() {
               {!(image instanceof File) && (
                 <button
                   onClick={async () => {
-                    await setProductCoverImage(slugId, image.public_id);
+                    await setProductCoverImage(slugId, image.public_id, token);
                     await getImages();
                   }}
                   type="button"

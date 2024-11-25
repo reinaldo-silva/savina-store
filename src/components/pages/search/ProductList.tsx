@@ -32,7 +32,7 @@ export function ProductList({
   return (
     <animated.div
       style={props}
-      className="relative flex flex-1 flex-col overflow-x-hidden overflow-y-scroll p-4"
+      className="relative flex min-h-svh flex-1 flex-col overflow-x-hidden overflow-y-scroll p-4"
     >
       <div className="absolute left-0 top-0 w-full p-4">
         <SearchInput name={defaultFilter.name} />

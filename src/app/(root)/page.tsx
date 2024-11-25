@@ -40,7 +40,7 @@ export default function HomePage() {
         </Heading>
 
         <div className="flex justify-center gap-6 py-4">
-          {allCategories.data.slice(0, 2).map((cat, index) => (
+          {(allCategories.data ?? []).slice(0, 2).map((cat, index) => (
             <div key={index}>
               <CardDefault className="size-[160px] overflow-hidden !p-0 md:size-[200px]">
                 <Link
@@ -72,7 +72,7 @@ export default function HomePage() {
         />
       </section>
 
-      <PrataSection products={allProducts.data} />
+      <PrataSection products={allProducts.data ?? []} />
     </div>
   );
 }

@@ -27,13 +27,13 @@ export default function SearchPage({
     <div className="flex max-h-[calc(100svh-164px)] flex-1 md:max-h-[calc(100svh-133px)]">
       <div className="flex flex-col border-r bg-zinc-100">
         <SearchForm
-          categories={allCategories.data}
+          categories={allCategories.data ?? []}
           defaultFilter={defaultFilter}
         />
       </div>
 
       <ProductList total={allProducts.total} defaultFilter={defaultFilter}>
-        {allProducts.data.map((data, index) => (
+        {(allProducts.data ?? []).map((data, index) => (
           <ProductCard data={data} key={index} />
         ))}
       </ProductList>

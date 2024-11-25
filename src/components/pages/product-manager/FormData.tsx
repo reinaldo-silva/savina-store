@@ -54,6 +54,8 @@ const FormSchema = z.object({
 
 export function FormData({ categories, openDialog }: FormDataProps) {
   const { refresh, push } = useRouter();
+  const cookies = parseCookies();
+  const token = cookies["APP_SAVINA:token"];
 
   const {
     handleChangeStatus,
@@ -76,10 +78,10 @@ export function FormData({ categories, openDialog }: FormDataProps) {
     start();
     try {
       if (page === "EDIT") {
-        await updateProduct(slugId, data);
+        await updateProduct(slugId, data, token);
       }
       if (page === "CREATE") {
-        const slug = await createProduct(data);
+        const slug = await createProduct({ data, token });
         handleChangeStatus({ page: "CREATE", slugId: slug });
       }
 
@@ -99,16 +101,18 @@ export function FormData({ categories, openDialog }: FormDataProps) {
   }
 
   useEffect(() => {
-    const cookies = parseCookies();
-
     if (page === "EDIT") {
       openDialog();
       startLoadingProduct();
       getProductBySlugToAdmin({
         slug: slugId,
-        token: cookies["APP_SAVINA:token"],
+        token,
       })
         .then((response) => {
+          if (!response.data) {
+            return;
+          }
+
           const {
             name,
             categories: cat,
@@ -148,6 +152,7 @@ export function FormData({ categories, openDialog }: FormDataProps) {
     openDialog,
     page,
     slugId,
+    token,
   ]);
 
   if (loadingProduct) {

@@ -7,6 +7,7 @@ import {
   FormProductProvider,
 } from "@/components/pages/product-manager/FormContext";
 import { ProductForm } from "@/components/pages/product-manager/ProductForm";
+import { SwitchAvailableButton } from "@/components/pages/product-manager/SwitchAvailableButton";
 import { RefreshData } from "@/components/RefreshData";
 import { Text } from "@/components/Text";
 import { Button } from "@/components/ui/button";
@@ -46,7 +47,7 @@ export default function ProductManagerPage() {
           <div className="flex items-center gap-2">
             <RefreshData />
             <Suspense>
-              <ProductForm categories={allCategories.data} />
+              <ProductForm categories={allCategories.data ?? []} />
             </Suspense>
           </div>
         </div>
@@ -69,6 +70,7 @@ export default function ProductManagerPage() {
                   <TableHead className="w-[100px]">Slug</TableHead>
                   <TableHead>Nome</TableHead>
                   <TableHead>Quantidade</TableHead>
+                  <TableHead>Habilitado</TableHead>
                   <TableHead className="w-24"></TableHead>
                 </TableRow>
               </TableHeader>
@@ -110,6 +112,12 @@ export default function ProductManagerPage() {
                         </Text>
                       </TableCell>
                       <TableCell>{product.stock}</TableCell>
+                      <TableCell>
+                        <SwitchAvailableButton
+                          slug={product.slug}
+                          checked={product.available}
+                        />
+                      </TableCell>
                       <TableCell className="inline-flex space-x-2">
                         <ClientOnly>
                           <DeleteDialog

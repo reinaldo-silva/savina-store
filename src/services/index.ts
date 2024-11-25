@@ -1,6 +1,6 @@
 interface ApiResponse<T = unknown> {
   statusCode: number;
-  data: T;
+  data: T | null;
   message: string;
   total?: number;
 }
