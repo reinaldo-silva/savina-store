@@ -40,7 +40,6 @@ export function DeleteDialog({ slugId, productName }: DeleteDialogProps) {
       if (error instanceof Error) {
         toast(`Erro: ${error.message}`, { icon: <CircleX /> });
       } else {
-        // Em caso de erro não ser uma instância de Error
         toast(`Erro desconhecido: ${String(error)}`, { icon: <CircleX /> });
       }
     }

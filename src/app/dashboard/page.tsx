@@ -1,21 +1,41 @@
 import { CardDefault } from "@/components/CardDefault";
+import { Heading } from "@/components/Heading";
+import { DialogAddProduct } from "@/components/pages/dashboard/DialogAddProduct";
+import { DialogSubProduct } from "@/components/pages/dashboard/DialogSubProduct";
+import { getProductsToAdmin } from "@/services/productService";
+import { Package, Tags } from "lucide-react";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { use } from "react";
 
 export default function DashboardPage() {
+  const token = cookies().get("APP_SAVINA:token")?.value ?? "";
+
+  const allProducts = use(getProductsToAdmin({ size: "100", token }));
+
+  if (!allProducts.data) {
+    return null;
+  }
+
   return (
-    <div className="flex-1 bg-red-300 p-4">
+    <div className="flex-1 p-4">
       <div className="grid grid-cols-4 gap-2">
         <Link href="/dashboard/product">
-          <CardDefault>Produtos</CardDefault>
+          <CardDefault className="flex items-center justify-between">
+            <Heading as="h3">Produtos</Heading>
+            <Package />
+          </CardDefault>
         </Link>
-        <Link href="/dashboard/">
-          <CardDefault>Categorias</CardDefault>
-        </Link>
-        <Link href="/dashboard/">
-          <CardDefault>Transações</CardDefault>
+        <Link href="/dashboard/categories">
+          <CardDefault className="flex items-center justify-between">
+            <Heading as="h3">Categorias</Heading>
+            <Tags />
+          </CardDefault>
         </Link>
 
-        <CardDefault>card 01</CardDefault>
+        <DialogAddProduct products={allProducts.data} />
+
+        <DialogSubProduct products={allProducts.data} />
       </div>
     </div>
   );
