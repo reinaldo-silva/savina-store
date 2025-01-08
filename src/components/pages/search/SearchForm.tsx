@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useIsMobile } from "@/hook/useIsMobile";
 import { Category } from "@/services/categoriesService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { animated, useSpring } from "@react-spring/web";
@@ -38,6 +39,7 @@ const FormSchema = z.object({
 export function SearchForm({ categories, defaultFilter }: SearchFormProps) {
   const { filterOpen, toggleFilter } = useRootContext();
   const { push } = useRouter();
+  const isMobile = useIsMobile();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -61,7 +63,7 @@ export function SearchForm({ categories, defaultFilter }: SearchFormProps) {
     }
 
     const url = `/search${params.toString() ? `?${params.toString()}` : ""}`;
-    toggleFilter();
+    if (isMobile) toggleFilter();
     push(url);
   }
 
