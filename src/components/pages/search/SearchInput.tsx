@@ -1,13 +1,14 @@
 "use client";
 import { useRootContext } from "@/app/(root)/RootContext";
+import { Text } from "@/components/Text";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
 import { useScrollToTopOnRouteChange } from "@/hook/useScrollToTopOnRouteChange";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { animated, useSpring } from "@react-spring/web";
 import clsx from "clsx";
-import { Filter, Search, X } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { Filter, Info, Search, X } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,11 +17,12 @@ const FormSchema = z.object({
   name: z.string(),
 });
 
-export function SearchInput({ name }: { name: string }) {
+export function SearchInput({ name, total }: { name: string; total?: number }) {
   useScrollToTopOnRouteChange();
   const { push } = useRouter();
   const { toggleFilter, filterOpen } = useRootContext();
   const pathname = usePathname();
+  const filtersCount = useSearchParams().size;
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -72,7 +74,7 @@ export function SearchInput({ name }: { name: string }) {
   return (
     <animated.div
       style={{ ...transformProps, ...opacityProps }}
-      className={clsx("w-full flex-col space-y-4 md:flex", {
+      className={clsx("w-full flex-col md:flex", {
         hidden: pathname !== "/search",
       })}
     >
@@ -131,7 +133,22 @@ export function SearchInput({ name }: { name: string }) {
           />
         </form>
       </Form>
-      {pathname === "/search" && <Separator />}
+      {pathname === "/search" && (
+        <>
+          <div className="flex justify-between pb-2 pt-1 font-bold text-muted-foreground">
+            <Text size="sm">{total} produtos encontrados.</Text>
+            <div className="flex items-center gap-1">
+              <Text size="sm">
+                {filtersCount ? "Filtro ativo" : "Nenhum filtro aplicado"}
+              </Text>
+              {filtersCount > 0 && (
+                <Info size={14} strokeWidth={3} className="text-default" />
+              )}
+            </div>
+          </div>
+          <Separator />
+        </>
+      )}
     </animated.div>
   );
 }

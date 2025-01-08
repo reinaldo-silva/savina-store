@@ -37,7 +37,6 @@ const FormSchema = z.object({
 
 export function SearchForm({ categories, defaultFilter }: SearchFormProps) {
   const { filterOpen, toggleFilter } = useRootContext();
-
   const { push } = useRouter();
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -62,6 +61,7 @@ export function SearchForm({ categories, defaultFilter }: SearchFormProps) {
     }
 
     const url = `/search${params.toString() ? `?${params.toString()}` : ""}`;
+    toggleFilter();
     push(url);
   }
 
@@ -139,14 +139,6 @@ export function SearchForm({ categories, defaultFilter }: SearchFormProps) {
               }
             />
           </FormItem>
-
-          {/* <Alert>
-            <CircleAlert className="size-4" />
-            <AlertTitle>Atenção</AlertTitle>
-            <AlertDescription>
-              Há mudanças que não foram aplicadas!
-            </AlertDescription>
-          </Alert> */}
 
           <div className="space-x-2 truncate">
             <Button type="submit">Submit</Button>

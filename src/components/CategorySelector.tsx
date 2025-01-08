@@ -101,6 +101,7 @@ export function CategorySelector({
             );
             return (
               <Button
+                type="button"
                 key={index}
                 variant="link"
                 className="p-0 hover:no-underline"

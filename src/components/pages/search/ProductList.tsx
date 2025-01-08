@@ -1,7 +1,6 @@
 "use client";
 import { useRootContext } from "@/app/(root)/RootContext";
 import { SearchInput } from "@/components/pages/search/SearchInput";
-import { Text } from "@/components/Text";
 import useComponentWidth from "@/hook/useComponentWidth";
 import { animated, useSpring } from "@react-spring/web";
 import clsx from "clsx";
@@ -32,18 +31,15 @@ export function ProductList({
   return (
     <animated.div
       style={props}
-      className="relative flex h-full flex-1 flex-col overflow-x-hidden overflow-y-scroll p-4"
+      className="relative flex min-h-[calc(100svh-101px)] flex-1 flex-col overflow-x-hidden overflow-y-scroll p-4"
     >
       <div className="absolute left-0 top-0 w-full p-4">
-        <SearchInput name={defaultFilter.name} />
+        <SearchInput total={total} name={defaultFilter.name} />
       </div>
-      <Text className="pb-2 font-medium text-muted-foreground" size="sm">
-        {total} produtos encontrados.
-      </Text>
 
       <div
         ref={ref}
-        className={clsx("grid gap-4", {
+        className={clsx("grid gap-4 pt-2", {
           "grid-cols-2": width > 450,
           "grid-cols-3": width > 700,
           "grid-cols-4": width > 1000,
