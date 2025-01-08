@@ -29,10 +29,12 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { useLoading } from "@/hook/useLoading";
-import { Product } from "@/services/productService";
+import { Product, stockOut } from "@/services/productService";
 import { findProductInArray } from "@/utils/product";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Package, PackageMinus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { parseCookies } from "nookies";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -56,6 +58,9 @@ interface DialogAddProductProps {
 }
 
 export function DialogSubProduct({ products }: DialogAddProductProps) {
+  const { refresh } = useRouter();
+  const cookies = parseCookies();
+  const token = cookies["APP_SAVINA:token"];
   const [isOpen, setIsOpen] = useState(false);
   const { isLoading, start, stop } = useLoading();
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
@@ -78,7 +83,20 @@ export function DialogSubProduct({ products }: DialogAddProductProps) {
     }
 
     start();
-    stop();
+    stockOut(currentProduct.slug, Number(output), token)
+      .then(() => {
+        toast("Saída de produto realizada com sucesso.");
+      })
+      .catch((error) => {
+        toast(`Erro ao realizar saída de produto: ${error.message}`);
+      })
+      .finally(() => {
+        fetch("/api/revalidate/products", { method: "GET" }).then(() => {
+          refresh();
+          stop();
+          setIsOpen(false);
+        });
+      });
   }
 
   return (

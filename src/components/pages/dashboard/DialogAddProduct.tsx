@@ -29,16 +29,19 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { useLoading } from "@/hook/useLoading";
-import { Product } from "@/services/productService";
+import { Product, stockEntry } from "@/services/productService";
 import { findProductInArray } from "@/utils/product";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Package, PackagePlus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { parseCookies } from "nookies";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const FormSchema = z.object({
-  product: z.string(),
+  product: z.string().optional(),
   entry: z.string().refine(
     (value) => {
       const num = Number(value);
@@ -55,9 +58,12 @@ interface DialogAddProductProps {
 }
 
 export function DialogAddProduct({ products }: DialogAddProductProps) {
+  const { refresh } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { isLoading, start, stop } = useLoading();
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
+  const cookies = parseCookies();
+  const token = cookies["APP_SAVINA:token"];
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -71,10 +77,22 @@ export function DialogAddProduct({ products }: DialogAddProductProps) {
       return;
     }
 
-    console.log(entry);
-
     start();
-    stop();
+
+    stockEntry(currentProduct.slug, Number(entry), token)
+      .then(() => {
+        toast("Entrada de produto realizada com sucesso.");
+      })
+      .catch((error) => {
+        toast(`Erro ao realizar entrada de produto: ${error.message}`);
+      })
+      .finally(async () => {
+        fetch("/api/revalidate/products", { method: "GET" }).then(() => {
+          refresh();
+          stop();
+          setIsOpen(false);
+        });
+      });
   }
 
   return (

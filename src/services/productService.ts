@@ -285,7 +285,9 @@ async function switchAvailable(slugId: string, token: string): Promise<void> {
     `${process.env.NEXT_PUBLIC_API_URL}/products/${slugId}/available/switch`,
     {
       method: "PATCH",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
   );
 
@@ -311,6 +313,50 @@ async function deleteProduct(productId: string): Promise<void> {
   }
 }
 
+async function stockEntry(
+  slug: string,
+  quantity: number,
+  token: string,
+): Promise<void> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/${slug}/stock-entry`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ quantity }),
+    },
+  );
+
+  if (!response.ok) {
+    const res = await response.json();
+    throw new Error(res.message);
+  }
+}
+
+async function stockOut(
+  slug: string,
+  quantity: number,
+  token: string,
+): Promise<void> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/products/${slug}/stock-out`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ quantity }),
+    },
+  );
+
+  if (!response.ok) {
+    const res = await response.json();
+    throw new Error(res.message);
+  }
+}
+
 export {
   getProducts,
   getProductBySlug,
@@ -323,6 +369,8 @@ export {
   getProductsToAdmin,
   getProductBySlugToAdmin,
   switchAvailable,
+  stockEntry,
+  stockOut,
 };
 
 export type { Image, Product };
