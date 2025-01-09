@@ -20,6 +20,7 @@ import { animated, useSpring } from "@react-spring/web";
 import clsx from "clsx";
 import { Filter, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -85,6 +86,18 @@ export function SearchForm({ categories, defaultFilter }: SearchFormProps) {
     delay: filterOpen ? 300 : 0,
     config: { duration: 200 },
   });
+
+  useEffect(() => {
+    form.setValue("name", defaultFilter.name);
+    form.setValue(
+      "categories",
+      defaultFilter.cat
+        ? defaultFilter.cat.split(",").map((e) => ({
+            id: Number(e),
+          }))
+        : [],
+    );
+  }, [defaultFilter, form]);
 
   return (
     <animated.div

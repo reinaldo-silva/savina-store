@@ -71,6 +71,10 @@ export function SearchInput({ name, total }: { name: string; total?: number }) {
     }
   }, [filterOpen, pathname, toggleFilter]);
 
+  useEffect(() => {
+    form.setValue("name", name);
+  }, [name, form]);
+
   return (
     <animated.div
       style={{ ...transformProps, ...opacityProps }}
