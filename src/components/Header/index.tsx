@@ -1,21 +1,18 @@
-"use client";
 import { Button } from "@/components/ui/button";
 import { Category } from "@/services/categoriesService";
-import clsx from "clsx";
 import { ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
-import { SearchInput } from "./pages/search/SearchInput";
+import { ClientOnly } from "../ClientOnly";
+import { SearchInput } from "../pages/search/SearchInput";
+import { CenterLogo } from "./CenterLogo";
+import { LinkToFilter } from "./LinkToFilter";
 
 interface HeaderProps {
   categories: Category[];
 }
 
 export function Header({ categories }: HeaderProps) {
-  const pathname = usePathname();
-  const currentCategories = useSearchParams().get("cat");
-
   return (
     <div className="fixed left-0 top-0 z-40 max-h-[104px] w-screen md:max-h-[133px]">
       <div className="flex justify-center bg-zinc-950 py-2 text-xs font-bold uppercase text-white">
@@ -36,17 +33,15 @@ export function Header({ categories }: HeaderProps) {
             />
           </Link>
 
-          <Image
-            src="/desc.svg"
-            className={clsx("flex h-8 w-[70px] object-contain md:w-[200px]", {
-              "md:hidden": pathname !== "/search",
-            })}
-            alt="Logo"
-            width={400}
-            height={400}
-          />
+          <ClientOnly
+            fallback={
+              <div className="h-[36px] w-full animate-pulse bg-zinc-300" />
+            }
+          >
+            <CenterLogo />
 
-          {pathname !== "/search" && <SearchInput name="" />}
+            <SearchInput name="" headerConfig={true} />
+          </ClientOnly>
           <div className="hidden items-center space-x-2 md:flex">
             <Button variant="ghost" className="size-10" disabled>
               <User size={24} />
@@ -59,21 +54,7 @@ export function Header({ categories }: HeaderProps) {
         <div className="mx-auto hidden max-w-screen-xl justify-center px-1 pb-0 md:flex">
           <div className="">
             {categories.map(({ name, id }, index) => (
-              <Link key={index} href={`/search?cat=${id}`}>
-                <Button
-                  variant="link"
-                  className={clsx(
-                    "font-semibold text-muted-foreground transition hover:text-zinc-800",
-                    {
-                      "!text-default underline":
-                        currentCategories === String(id) &&
-                        pathname === "/search",
-                    },
-                  )}
-                >
-                  {name}
-                </Button>
-              </Link>
+              <LinkToFilter key={index} id={id} name={name} />
             ))}
           </div>
         </div>

@@ -17,7 +17,15 @@ const FormSchema = z.object({
   name: z.string(),
 });
 
-export function SearchInput({ name, total }: { name: string; total?: number }) {
+export function SearchInput({
+  name,
+  total,
+  headerConfig = false,
+}: {
+  name: string;
+  total?: number;
+  headerConfig?: boolean;
+}) {
   useScrollToTopOnRouteChange();
   const { push } = useRouter();
   const { toggleFilter, filterOpen } = useRootContext();
@@ -74,6 +82,10 @@ export function SearchInput({ name, total }: { name: string; total?: number }) {
   useEffect(() => {
     form.setValue("name", name);
   }, [name, form]);
+
+  if (headerConfig && pathname === "/search") {
+    return null;
+  }
 
   return (
     <animated.div

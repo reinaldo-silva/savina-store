@@ -37,7 +37,10 @@ const FormSchema = z.object({
   categories: z.array(z.object({ id: z.number() })),
 });
 
-export function SearchForm({ categories, defaultFilter }: SearchFormProps) {
+export function SearchForm({
+  categories,
+  defaultFilter: { cat, name },
+}: SearchFormProps) {
   const { filterOpen, toggleFilter } = useRootContext();
   const { push } = useRouter();
   const isMobile = useIsMobile();
@@ -45,10 +48,8 @@ export function SearchForm({ categories, defaultFilter }: SearchFormProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      name: defaultFilter.name,
-      categories: defaultFilter.cat
-        ? defaultFilter.cat.split(",").map((e) => ({ id: Number(e) }))
-        : [],
+      name,
+      categories: cat ? cat.split(",").map((e) => ({ id: Number(e) })) : [],
     },
   });
 
@@ -88,16 +89,16 @@ export function SearchForm({ categories, defaultFilter }: SearchFormProps) {
   });
 
   useEffect(() => {
-    form.setValue("name", defaultFilter.name);
+    form.setValue("name", name);
     form.setValue(
       "categories",
-      defaultFilter.cat
-        ? defaultFilter.cat.split(",").map((e) => ({
+      cat
+        ? cat.split(",").map((e) => ({
             id: Number(e),
           }))
         : [],
     );
-  }, [defaultFilter, form]);
+  }, [cat, name, form]);
 
   return (
     <animated.div
@@ -140,11 +141,7 @@ export function SearchForm({ categories, defaultFilter }: SearchFormProps) {
 
           <FormItem className="flex flex-col">
             <CategorySelector
-              defaultValues={
-                defaultFilter.cat
-                  ? defaultFilter.cat.split(",").map(Number)
-                  : []
-              }
+              defaultValues={cat ? cat.split(",").map(Number) : []}
               categories={categories}
               onChange={(catArray) =>
                 form.setValue(
