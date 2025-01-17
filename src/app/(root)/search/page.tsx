@@ -1,3 +1,4 @@
+import { ClientOnly } from "@/components/ClientOnly";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductList } from "@/components/pages/search/ProductList";
 import { SearchForm } from "@/components/pages/search/SearchForm";
@@ -26,6 +27,7 @@ export default function SearchPage({
   return (
     <div className="flex max-h-[calc(100svh-164px)] flex-1 md:max-h-[calc(100svh-133px)]">
       <div className="flex flex-col border-r bg-zinc-100">
+        {/* Add loading */}
         <SearchForm
           categories={allCategories.data ?? []}
           defaultFilter={defaultFilter}
@@ -33,9 +35,12 @@ export default function SearchPage({
       </div>
 
       <ProductList total={allProducts.total} defaultFilter={defaultFilter}>
-        {(allProducts.data ?? []).map((data, index) => (
-          <ProductCard data={data} key={index} />
-        ))}
+        {/* Add loading */}
+        <ClientOnly>
+          {(allProducts.data ?? []).map((data, index) => (
+            <ProductCard data={data} key={index} />
+          ))}
+        </ClientOnly>
       </ProductList>
     </div>
   );

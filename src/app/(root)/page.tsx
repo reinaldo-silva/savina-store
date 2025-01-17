@@ -1,4 +1,5 @@
 import { CardDefault } from "@/components/CardDefault";
+import { ClientOnly } from "@/components/ClientOnly";
 import { Heading } from "@/components/Heading";
 import { ImageLoading } from "@/components/ImageLoading";
 import { PrataSection } from "@/components/pages/home/PrataSection";
@@ -17,23 +18,25 @@ export default function HomePage() {
 
   return (
     <div className="w-full">
-      <section className="relative h-[220px] sm:h-[300px] md:h-[460px]">
-        <Image
-          className="h-full w-full object-cover object-left-bottom"
-          width={1280}
-          height={500}
-          alt=""
-          src="/fullbanner.png"
-        />
-        <Link
-          className="absolute bottom-7 left-6 sm:bottom-10 sm:left-10 md:bottom-14 md:left-14"
-          href="/search"
-        >
-          <Button className="uppercase">
-            Conferir <ChevronRight />
-          </Button>
-        </Link>
-      </section>
+      <ClientOnly fallback={<div className="h-[460px] w-full bg-zinc-300" />}>
+        <section className="relative h-[220px] sm:h-[300px] md:h-[460px]">
+          <Image
+            className="h-full w-full object-cover object-left-bottom"
+            width={1280}
+            height={500}
+            alt=""
+            src="/fullbanner.png"
+          />
+          <Link
+            className="absolute bottom-7 left-6 sm:bottom-10 sm:left-10 md:bottom-14 md:left-14"
+            href="/search"
+          >
+            <Button className="uppercase">
+              Conferir <ChevronRight />
+            </Button>
+          </Link>
+        </section>
+      </ClientOnly>
       <section className="flex flex-col justify-center p-6 py-10">
         <Heading as="h2" className="text-center">
           Principais coleções

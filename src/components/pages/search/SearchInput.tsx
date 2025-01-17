@@ -154,8 +154,8 @@ export function SearchInput({
           <div className="flex justify-between pb-2 pt-1 font-bold text-muted-foreground">
             <Text size="sm">{total} produtos encontrados.</Text>
             <div className="flex items-center gap-1">
-              <Text size="sm">
-                {filtersCount ? "Filtro ativo" : "Nenhum filtro aplicado"}
+              <Text size="sm" className="opacity-60">
+                {filtersCount ? "Filtro ativo" : "Sem filtros"}
               </Text>
               {filtersCount > 0 && (
                 <Info size={14} strokeWidth={3} className="text-default" />
