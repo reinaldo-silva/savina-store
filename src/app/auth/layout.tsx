@@ -6,10 +6,10 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="max-h-vh flex min-h-screen w-screen flex-col items-center justify-center gap-4 overflow-x-hidden bg-zinc-50">
+    <div className="max-h-vh flex min-h-svh w-screen flex-col items-center justify-center gap-4 overflow-x-hidden bg-zinc-50 px-4">
       <Image
         priority
-        className="size-20"
+        className="size-10"
         src="/logo.svg"
         alt="Logo"
         width={400}
