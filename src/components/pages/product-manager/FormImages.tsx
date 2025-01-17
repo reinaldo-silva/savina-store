@@ -162,6 +162,8 @@ function DeleteImageDialog({
   removeFile: () => void;
   refresh(): void;
 }) {
+  const cookies = parseCookies();
+  const token = cookies["APP_SAVINA:token"];
   const { isLoading, start, stop } = useLoading();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -179,15 +181,16 @@ function DeleteImageDialog({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="mt-4 flex gap-2">
-          <DialogTrigger>
-            <Button type="button">Cancelar</Button>
-          </DialogTrigger>
+          <Button onClick={() => setIsOpen(false)} type="button">
+            Cancelar
+          </Button>
+
           <Button
             isLoading={isLoading}
             onClick={async () => {
               if (publicId) {
                 start();
-                await deleteImage(publicId).finally(stop);
+                await deleteImage(publicId, token).finally(stop);
                 refresh();
               } else removeFile();
 

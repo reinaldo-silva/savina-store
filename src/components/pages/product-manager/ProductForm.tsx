@@ -11,9 +11,9 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Category } from "@/services/categoriesService";
 import { useEffect, useState } from "react";
+import { useProductFormContext } from "./FormContext";
 import { FormData } from "./FormData";
 import { FormImages } from "./FormImages";
-import { useProductFormContext } from "./FormContext";
 
 interface SearchFormProps {
   categories: Category[];

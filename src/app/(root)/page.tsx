@@ -75,7 +75,7 @@ export default function HomePage() {
         />
       </section>
 
-      <PrataSection products={allProducts.data ?? []} />
+      {allProducts.data?.[0] && <PrataSection products={allProducts.data} />}
     </div>
   );
 }

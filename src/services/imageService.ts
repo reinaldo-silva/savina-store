@@ -8,13 +8,14 @@ interface Image {
   updated_at: string;
 }
 
-async function deleteImage(publicId: string): Promise<void> {
+async function deleteImage(publicId: string, token: string): Promise<void> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/image/${publicId}`,
     {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     },
   );
