@@ -1,11 +1,11 @@
 import { ClientOnly } from "@/components/ClientOnly";
 import { Heading } from "@/components/Heading";
+import { ListCatalog } from "@/components/pages/catalog/ListCatalog";
+import { PreviewProduct } from "@/components/pages/catalog/PreviewProduct";
 import { ProductCard } from "@/components/ProductCard";
 import { getProducts } from "@/services/productService";
 import Image from "next/image";
 import { use } from "react";
-import { ListCatalog } from "./ListCatalog";
-import { PreviewProduct } from "./PreviewProduct";
 
 export default function SearchPage({
   searchParams,
