@@ -14,6 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import useComponentWidth from "@/hook/useComponentWidth";
 import { Image as IImage } from "@/services/productService";
 import clsx from "clsx";
 import Autoplay from "embla-carousel-autoplay";
@@ -27,34 +28,46 @@ interface CarouselSectionProps {
 export function CarouselSection({ images }: CarouselSectionProps) {
   const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
   const [currentImageView, setCurrentImageView] = useState<null | IImage>(null);
+  const { ref, width } = useComponentWidth();
 
   return (
-    <section className="relative -mb-8 flex max-h-[300px] min-h-[300px] w-full flex-1 border-b border-zinc-100 md:-mb-12">
+    <div
+      ref={ref}
+      className={clsx(
+        "relative flex size-full flex-1 border-b border-zinc-100",
+      )}
+    >
       <Carousel
         opts={{
           loop: true,
         }}
-        className="flex h-full w-full justify-center"
+        className="flex"
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
       >
-        <CarouselContent>
+        <CarouselContent className="size-full">
           {images.map((img, index) => (
             <CarouselItem
               key={index}
-              className={clsx(
-                "min-h-[300px] sm:basis-1/2 md:basis-1/3 lg:basis-1/4",
-                { "sm:!basis-1/3": images.length === 3 },
-                { "sm:!basis-1/2": images.length === 2 },
-              )}
+              className={clsx({
+                "basis-1/2": width > 600,
+                "!basis-1/2": images.length === 2 && width > 600,
+                "basis-1/3": width > 750,
+                "!basis-1/3": images.length === 3 && width > 930,
+                "basis-1/4": width > 930,
+              })}
             >
               <button
+                className="size-full"
                 onClick={() => {
                   setCurrentImageView(img);
                 }}
               >
-                <ImageLoading url={img.image_url} alt={`${img}-${index}`} />
+                <ImageLoading
+                  url={img.image_url}
+                  alt={`${img.product_id}-${index}`}
+                />
               </button>
             </CarouselItem>
           ))}
@@ -84,6 +97,6 @@ export function CarouselSection({ images }: CarouselSectionProps) {
           )}
         </Dialog>
       </Carousel>
-    </section>
+    </div>
   );
 }

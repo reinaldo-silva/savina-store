@@ -1,4 +1,5 @@
 import { CardDefault } from "@/components/CardDefault";
+import { ClientOnly } from "@/components/ClientOnly";
 import { Heading } from "@/components/Heading";
 import { CarouselSection } from "@/components/pages/product-slug/CarouselSection";
 import { Text } from "@/components/Text";
@@ -26,7 +27,11 @@ export default function ProductDetailPage({
 
   return (
     <div className="hide-scrollbar flex flex-1 flex-col overflow-y-scroll">
-      <CarouselSection images={product.data.images} />
+      <div className="-mb-10 max-h-[400px] min-h-[400px]">
+        <ClientOnly>
+          <CarouselSection images={product.data.images} />
+        </ClientOnly>
+      </div>
 
       <section className="z-10 mx-auto grid w-full max-w-[1000px] grid-cols-2 items-start gap-4 p-4 px-2 md:grid-cols-3 md:px-6">
         <CardDefault className="col-span-2 row-start-1 flex-1">

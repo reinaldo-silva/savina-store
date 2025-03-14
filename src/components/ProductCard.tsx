@@ -7,15 +7,17 @@ import Link from "next/link";
 
 export function ProductCard({
   data: { images, name, price, slug },
+  isCatalog = false,
 }: {
   data: Product;
+  isCatalog?: boolean;
 }) {
   const imageCover = images.find((e) => e.is_cover) ?? images[0];
 
   return (
-    <Link href={`/product/${slug}`}>
+    <Link href={isCatalog ? `/catalog?id=${slug}` : `/product/${slug}`}>
       <button className="group flex w-full cursor-pointer flex-col space-y-1">
-        <div className="relative flex h-64 w-full items-center justify-center overflow-hidden bg-zinc-200 shadow-md">
+        <div className="relative flex h-40 w-full items-center justify-center overflow-hidden bg-zinc-200 shadow-md sm:h-64">
           {imageCover ? (
             <Image
               alt={name}
@@ -40,6 +42,12 @@ export function ProductCard({
             {formatPrice(price)}
           </Text>
         </div>
+
+        {isCatalog && (
+          <div className="w-full rounded border bg-orange-100 py-1">
+            <Text className="font-medium">Compre já!</Text>
+          </div>
+        )}
       </button>
     </Link>
   );

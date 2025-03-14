@@ -14,10 +14,11 @@ export function ImageLoading({
   classNameImage?: string;
 }) {
   const [isLoading, setIsLoading] = useState(true);
+  const [img, setImg] = useState(url);
 
   return (
     <div
-      className={clsx("flex h-full w-full flex-1 items-center justify-center", {
+      className={clsx("flex size-full", {
         "animate-pulse bg-zinc-300": isLoading,
       })}
     >
@@ -25,12 +26,15 @@ export function ImageLoading({
         onLoad={() => {
           setIsLoading(false);
         }}
+        onError={() => {
+          setImg("/no-image.png");
+        }}
         priority
-        width={400}
-        height={400}
-        src={url}
+        width={800}
+        height={800}
+        src={img}
         alt={alt}
-        className={clsx("h-full w-full object-cover", classNameImage)}
+        className={clsx("flex size-full object-cover", classNameImage)}
       />
     </div>
   );
