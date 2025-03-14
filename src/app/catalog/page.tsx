@@ -7,14 +7,10 @@ import { getProducts } from "@/services/productService";
 import Image from "next/image";
 import { use } from "react";
 
-export default function SearchPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] };
-}) {
+export default function CatalogPage() {
   const defaultFilter = {
-    cat: (searchParams.cat || "") as string,
-    name: (searchParams.name || "") as string,
+    cat: "",
+    name: "",
     size: "100",
   };
 
