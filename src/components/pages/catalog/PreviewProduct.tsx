@@ -74,7 +74,7 @@ export function PreviewProduct() {
                 </Text>
                 <Heading className="mb-2">{product?.name}</Heading>
 
-                <div className="relative flex max-h-[360px] min-h-[360px] items-center overflow-hidden">
+                <div className="relative flex max-h-[30px] min-h-[300px] items-center overflow-hidden sm:max-h-[360px] sm:min-h-[360px]">
                   <CarouselSection images={product.images} />
                 </div>
 
