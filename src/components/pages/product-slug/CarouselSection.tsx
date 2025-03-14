@@ -23,9 +23,10 @@ import { useRef, useState } from "react";
 
 interface CarouselSectionProps {
   images: IImage[];
+  isCatalog?: boolean;
 }
 
-export function CarouselSection({ images }: CarouselSectionProps) {
+export function CarouselSection({ images, isCatalog }: CarouselSectionProps) {
   const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
   const [currentImageView, setCurrentImageView] = useState<null | IImage>(null);
   const { ref, width } = useComponentWidth();
@@ -60,6 +61,7 @@ export function CarouselSection({ images }: CarouselSectionProps) {
             >
               <button
                 className="size-full"
+                disabled={isCatalog}
                 onClick={() => {
                   setCurrentImageView(img);
                 }}

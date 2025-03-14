@@ -75,7 +75,7 @@ export function PreviewProduct() {
                 <Heading className="mb-2">{product?.name}</Heading>
 
                 <div className="relative flex max-h-[30px] min-h-[300px] items-center overflow-hidden sm:max-h-[360px] sm:min-h-[360px]">
-                  <CarouselSection images={product.images} />
+                  <CarouselSection images={product.images} isCatalog />
                 </div>
 
                 <Heading as="h1" className="my-4">
