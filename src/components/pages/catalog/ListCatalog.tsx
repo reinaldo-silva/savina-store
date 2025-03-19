@@ -9,7 +9,7 @@ export function ListCatalog({ children }: PropsWithChildren) {
   return (
     <div
       ref={ref}
-      className={clsx("grid gap-4", {
+      className={clsx("grid gap-4 px-4", {
         "grid-cols-2": width > 300,
         "grid-cols-3": width > 700,
         "grid-cols-4": width > 1000,
