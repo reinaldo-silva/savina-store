@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
+import { Pencil } from "@phosphor-icons/react";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
 export type CurrentStatus = { page: null | "EDIT" | "CREATE"; slugId: string };

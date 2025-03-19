@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Category } from "@/services/categoriesService";
-import { ShoppingCart, User } from "lucide-react";
+import { ShoppingCart, User } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import { ClientOnly } from "../ClientOnly";

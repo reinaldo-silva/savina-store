@@ -3,7 +3,7 @@ import { Switch } from "@/components/ui/switch";
 import { useLoading } from "@/hook/useLoading";
 import { switchAvailable } from "@/services/productService";
 import { useRouter } from "next/navigation";
-import { parseCookies } from "nookies";
+import Cookies from "js-cookie";
 import { toast } from "sonner";
 
 export function SwitchAvailableButton({
@@ -13,8 +13,7 @@ export function SwitchAvailableButton({
   checked: boolean;
   slug: string;
 }) {
-  const cookies = parseCookies();
-  const token = cookies["APP_SAVINA:token"];
+  const token = Cookies.get("APP_SAVINA:token") ?? "";
   const { refresh } = useRouter();
   const { isLoading, start, stop } = useLoading();
 

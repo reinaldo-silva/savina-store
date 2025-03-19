@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { useLoading } from "@/hook/useLoading";
 import { deleteProduct } from "@/services/productService";
-import { CircleX, Trash2 } from "lucide-react";
+import { Trash, XCircle } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -38,9 +38,9 @@ export function DeleteDialog({ slugId, productName }: DeleteDialogProps) {
       setIsOpen(false);
     } catch (error) {
       if (error instanceof Error) {
-        toast(`Erro: ${error.message}`, { icon: <CircleX /> });
+        toast(`Erro: ${error.message}`, { icon: <XCircle /> });
       } else {
-        toast(`Erro desconhecido: ${String(error)}`, { icon: <CircleX /> });
+        toast(`Erro desconhecido: ${String(error)}`, { icon: <XCircle /> });
       }
     }
     stop();
@@ -55,7 +55,7 @@ export function DeleteDialog({ slugId, productName }: DeleteDialogProps) {
           variant="ghost"
           className="flex size-8 items-center justify-center rounded hover:bg-zinc-200"
         >
-          <Trash2 size={20} className="text-zinc-700" />
+          <Trash size={20} className="text-zinc-700" />
         </Button>
         <DialogContent>
           <DialogHeader>

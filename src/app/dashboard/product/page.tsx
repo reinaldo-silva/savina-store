@@ -23,7 +23,11 @@ import {
 } from "@/components/ui/table";
 import { getCategories } from "@/services/categoriesService";
 import { getProductsToAdmin } from "@/services/productService";
-import { Frown, ImageOff, LinkIcon } from "lucide-react";
+import {
+  ImageBroken,
+  Link as LinkIcon,
+  SmileySad,
+} from "@phosphor-icons/react/dist/ssr";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
@@ -60,7 +64,7 @@ export default function ProductManagerPage() {
                 ) : (
                   <div className="flex items-center justify-center gap-4">
                     <Text>Nenhum produto foi encontardo</Text>
-                    <Frown />
+                    <SmileySad />
                   </div>
                 )}
               </TableCaption>
@@ -90,7 +94,7 @@ export default function ProductManagerPage() {
                           />
                         ) : (
                           <div className="flex size-10 items-center justify-center rounded-sm bg-zinc-200">
-                            <ImageOff className="text-zinc-400" size={20} />
+                            <ImageBroken className="text-zinc-400" size={20} />
                           </div>
                         )}
                       </TableCell>

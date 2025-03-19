@@ -18,7 +18,7 @@ import { Category } from "@/services/categoriesService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { animated, useSpring } from "@react-spring/web";
 import clsx from "clsx";
-import { Filter, X } from "lucide-react";
+import { Funnel, X } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -113,7 +113,7 @@ export function SearchForm({
           <X size={16} />
         </button>
         <div className="flex items-center gap-2 truncate">
-          <Filter size={16} />
+          <Funnel size={16} />
           <Heading as="h5" className="font-base">
             Filtros
           </Heading>

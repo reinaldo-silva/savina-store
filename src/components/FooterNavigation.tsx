@@ -1,7 +1,13 @@
 "use client";
+import {
+  House,
+  Icon,
+  MagnifyingGlass as Search,
+  ShoppingCart,
+  User,
+} from "@phosphor-icons/react";
 import { animated, useSpring } from "@react-spring/web";
 import clsx from "clsx";
-import { House, LucideIcon, Search, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -46,7 +52,7 @@ const FooterNavigation = () => {
 type Url = string | UrlObject;
 
 interface IconButtonProps {
-  Icon: LucideIcon;
+  Icon: Icon;
   description: string;
   to?: Url;
   notifyNumber?: number;

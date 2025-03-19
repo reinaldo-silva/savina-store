@@ -7,8 +7,8 @@ import { useClickOutside } from "@/hook/useClickOutside";
 import { useLoading } from "@/hook/useLoading";
 import { getProductBySlug, Product } from "@/services/productService";
 import { formatPrice } from "@/utils/formatPrice";
+import { CircleNotch, X } from "@phosphor-icons/react";
 import { animated, useSpring } from "@react-spring/web";
-import { LoaderCircle, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -61,7 +61,7 @@ export function PreviewProduct() {
 
         {isLoading ? (
           <div className="flex flex-col items-center space-y-2">
-            <LoaderCircle className="size-8 animate-spin" />
+            <CircleNotch className="size-8 animate-spin" />
 
             <Text>Carregando...</Text>
           </div>

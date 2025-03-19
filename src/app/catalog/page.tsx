@@ -5,8 +5,7 @@ import { PreviewProduct } from "@/components/pages/catalog/PreviewProduct";
 import { ProductCard } from "@/components/ProductCard";
 import { Text } from "@/components/Text";
 import { getProducts } from "@/services/productService";
-import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
-import { ChevronsDown } from "lucide-react";
+import { CaretDown, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
@@ -71,7 +70,7 @@ export default function CatalogPage() {
             >
               <Text className="text-sm font-semibold">Role para baixo</Text>
             </Link>
-            <ChevronsDown
+            <CaretDown
               className="animate-bounce text-zinc-600 duration-1000"
               size={24}
             />
@@ -82,11 +81,9 @@ export default function CatalogPage() {
           Nosso catálogo
         </Heading>
         <ListCatalog>
-          <ClientOnly>
-            {(allProducts.data ?? []).map((data, index) => (
-              <ProductCard isCatalog data={data} key={index} />
-            ))}
-          </ClientOnly>
+          {(allProducts.data ?? []).map((data, index) => (
+            <ProductCard isCatalog data={data} key={index} />
+          ))}
         </ListCatalog>
       </div>
 

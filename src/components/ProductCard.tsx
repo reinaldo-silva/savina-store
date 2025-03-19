@@ -1,7 +1,10 @@
 import { Text } from "@/components/Text";
 import { Product } from "@/services/productService";
 import { formatPrice } from "@/utils/formatPrice";
-import { ExternalLink, ImageOff } from "lucide-react";
+import {
+  Link as ExternalLink,
+  ImageBroken,
+} from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,7 +31,7 @@ export function ProductCard({
               height={400}
             />
           ) : (
-            <ImageOff size={44} strokeWidth={2} className="text-zinc-300" />
+            <ImageBroken size={44} strokeWidth={2} className="text-zinc-300" />
           )}
           <div className="absolute left-0 top-0 flex h-full w-full items-start justify-end bg-zinc-900/40 p-2 opacity-0 transition duration-500 group-hover:opacity-100">
             <ExternalLink size={20} className="text-zinc-200" />

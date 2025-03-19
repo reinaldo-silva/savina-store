@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { Category } from "@/services/categoriesService";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, CaretUpDown } from "@phosphor-icons/react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Text } from "./Text";
@@ -62,7 +62,7 @@ export function CategorySelector({
             className={cn("justify-between text-muted-foreground")}
           >
             Selecione as categorias
-            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            <CaretUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">

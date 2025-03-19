@@ -22,17 +22,16 @@ import {
 } from "@/services/productService";
 import { formatDate } from "@/utils/formatDate";
 import clsx from "clsx";
-import { Trash2, Wallpaper } from "lucide-react";
+import { Trash, Desktop } from "@phosphor-icons/react";
 import Image from "next/image";
-import { parseCookies } from "nookies";
+import Cookies from "js-cookie";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { useProductFormContext } from "./FormContext";
 
 export function FormImages() {
   const [images, setImages] = useState<(ImageType | File)[]>([]);
   const { isLoading, start, stop } = useLoading();
-  const cookies = parseCookies();
-  const token = cookies["APP_SAVINA:token"];
+  const token = Cookies.get("APP_SAVINA:token") ?? "";
 
   const {
     currentStatus: { slugId },
@@ -99,7 +98,7 @@ export function FormImages() {
                     },
                   )}
                 >
-                  <Wallpaper size={16} />
+                  <Desktop size={16} />
                   <Text className="font-bold">cover</Text>
                 </button>
               )}
@@ -162,15 +161,14 @@ function DeleteImageDialog({
   removeFile: () => void;
   refresh(): void;
 }) {
-  const cookies = parseCookies();
-  const token = cookies["APP_SAVINA:token"];
+  const token = Cookies.get("APP_SAVINA:token") ?? "";
   const { isLoading, start, stop } = useLoading();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger className="hover:text-red-500">
-        <Trash2 size={16} />
+        <Trash size={16} />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

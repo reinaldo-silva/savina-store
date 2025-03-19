@@ -1,7 +1,7 @@
 "use client";
 import { useLoading } from "@/hook/useLoading";
+import { ArrowCounterClockwise } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { RotateCcw } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
@@ -21,7 +21,7 @@ export function RefreshData() {
 
   return (
     <Button onClick={handleRefresh}>
-      <RotateCcw
+      <ArrowCounterClockwise
         strokeWidth={3}
         className={clsx({
           "animate-spin duration-100 repeat-infinite": isLoading,

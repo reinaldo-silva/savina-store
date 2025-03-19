@@ -7,7 +7,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getProductBySlug } from "@/services/productService";
 import { formatPrice } from "@/utils/formatPrice";
-import { CircleCheck, CircleX, Heart, Instagram } from "lucide-react";
+import {
+  CheckCircle,
+  Heart,
+  InstagramLogo,
+  XCircle,
+} from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { use } from "react";
@@ -75,9 +80,9 @@ export default function ProductDetailPage({
           <div className="mt-4 flex h-10 w-full items-center justify-center gap-2 border-2 border-zinc-800">
             <Text>{isAvailable ? "Disponível" : "Esgotado"}</Text>
             {isAvailable ? (
-              <CircleCheck className="text-green-500" size={20} />
+              <CheckCircle className="text-green-500" size={20} />
             ) : (
-              <CircleX className="text-red-500" size={20} />
+              <XCircle className="text-red-500" size={20} />
             )}
           </div>
           <Link
@@ -85,7 +90,7 @@ export default function ProductDetailPage({
             target={isAvailable ? "_blank" : "_top"}
           >
             <Button className="mt-4 w-full" disabled={!isAvailable}>
-              Solicitar no Instagram <Instagram />
+              Solicitar no Instagram <InstagramLogo />
             </Button>
           </Link>
         </CardDefault>

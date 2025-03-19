@@ -1,10 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import * as React from "react";
 
 type CarouselApi = UseEmblaCarouselType[1];

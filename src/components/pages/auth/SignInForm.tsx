@@ -12,12 +12,12 @@ import { Input } from "@/components/ui/input";
 import { useLoading } from "@/hook/useLoading";
 import { signIn } from "@/services/aurhService";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import nookies from "nookies";
 
 const FormSchema = z.object({
   email: z.string().min(1, { message: "O email é obrigatório" }),
@@ -40,11 +40,11 @@ export function SignInForm() {
     try {
       const { name, token } = await signIn(data);
 
-      nookies.set(null, "APP_SAVINA:token", token, {
+      Cookies.set("APP_SAVINA:token", token, {
         maxAge: 1 * (24 * 60 * 60),
         path: "/",
       });
-      nookies.set(null, "APP_SAVINA:name", name, {
+      Cookies.set("APP_SAVINA:name", name, {
         maxAge: 1 * (24 * 60 * 60),
         path: "/",
       });

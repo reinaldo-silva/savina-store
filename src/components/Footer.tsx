@@ -1,11 +1,16 @@
-import Image from "next/image";
 import { Heading } from "@/components/Heading";
-import { CreditCard, Package, Instagram, Mail } from "lucide-react";
 import { Text } from "@/components/Text";
-import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { Category } from "@/services/categoriesService";
+import {
+  CreditCard,
+  EnvelopeSimple,
+  InstagramLogo,
+  Package,
+} from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
+import Link from "next/link";
 
 export function Footer({ categories }: { categories: Category[] }) {
   return (
@@ -70,13 +75,13 @@ export function Footer({ categories }: { categories: Category[] }) {
           <div className="flex flex-col items-start">
             <Link href="http://instagram.com/savina.acessorios" target="_blank">
               <Button variant="link" className="p-0 text-zinc-300">
-                <Instagram />
+                <InstagramLogo />
                 <Text size="sm">instagram.com/savina.acessorios</Text>
               </Button>
             </Link>
             <Link href="mailto:marialuizatomicioli@gmail.com" target="_blank">
               <Button variant="link" className="p-0 text-zinc-300">
-                <Mail />
+                <EnvelopeSimple />
                 <Text size="sm">marialuizatomicioli@gmail.com</Text>
               </Button>
             </Link>

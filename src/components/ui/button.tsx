@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
+import { CircleNotch } from "@phosphor-icons/react/dist/ssr";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { LoaderCircle } from "lucide-react";
 import * as React from "react";
 
 const buttonVariants = cva(
@@ -68,7 +68,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading ? (
           <div className="animate-spin">
-            <LoaderCircle />
+            <CircleNotch />
           </div>
         ) : (
           children

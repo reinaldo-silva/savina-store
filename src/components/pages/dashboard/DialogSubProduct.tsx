@@ -32,9 +32,9 @@ import { useLoading } from "@/hook/useLoading";
 import { Product, stockOut } from "@/services/productService";
 import { findProductInArray } from "@/utils/product";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Package, PackageMinus } from "lucide-react";
+import { ArrowRight, Package } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
-import { parseCookies } from "nookies";
+import Cookies from "js-cookie";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -59,8 +59,7 @@ interface DialogAddProductProps {
 
 export function DialogSubProduct({ products }: DialogAddProductProps) {
   const { refresh } = useRouter();
-  const cookies = parseCookies();
-  const token = cookies["APP_SAVINA:token"];
+  const token = Cookies.get("APP_SAVINA:token") ?? "";
   const [isOpen, setIsOpen] = useState(false);
   const { isLoading, start, stop } = useLoading();
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
@@ -113,7 +112,7 @@ export function DialogSubProduct({ products }: DialogAddProductProps) {
       <DialogTrigger>
         <CardDefault className="flex items-center justify-between">
           <Heading as="h3">Saída</Heading>
-          <PackageMinus />
+          <Package />
         </CardDefault>
       </DialogTrigger>
 

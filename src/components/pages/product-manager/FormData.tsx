@@ -20,9 +20,9 @@ import {
   updateProduct,
 } from "@/services/productService";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoaderCircle } from "lucide-react";
+import { CircleNotch } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
-import { parseCookies } from "nookies";
+import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -54,8 +54,7 @@ const FormSchema = z.object({
 
 export function FormData({ categories, openDialog }: FormDataProps) {
   const { refresh, push } = useRouter();
-  const cookies = parseCookies();
-  const token = cookies["APP_SAVINA:token"];
+  const token = Cookies.get("APP_SAVINA:token") ?? "";
 
   const {
     handleChangeStatus,
@@ -158,7 +157,7 @@ export function FormData({ categories, openDialog }: FormDataProps) {
   if (loadingProduct) {
     return (
       <div className="flex h-[400px] flex-1 items-center justify-center">
-        <LoaderCircle
+        <CircleNotch
           className="animate-spin text-default duration-500"
           size={28}
         />

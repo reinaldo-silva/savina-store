@@ -5,9 +5,14 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
 import { useScrollToTopOnRouteChange } from "@/hook/useScrollToTopOnRouteChange";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Funnel,
+  Info,
+  MagnifyingGlass as Search,
+  X,
+} from "@phosphor-icons/react";
 import { animated, useSpring } from "@react-spring/web";
 import clsx from "clsx";
-import { Filter, Info, Search, X } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -139,7 +144,7 @@ export function SearchInput({
                         type="button"
                       >
                         Filtros
-                        <Filter strokeWidth={3} size={16} className="ml-1" />
+                        <Funnel strokeWidth={3} size={16} className="ml-1" />
                       </button>
                     )}
                   </div>

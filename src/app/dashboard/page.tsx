@@ -3,7 +3,7 @@ import { Heading } from "@/components/Heading";
 import { DialogAddProduct } from "@/components/pages/dashboard/DialogAddProduct";
 import { DialogSubProduct } from "@/components/pages/dashboard/DialogSubProduct";
 import { getProductsToAdmin } from "@/services/productService";
-import { Package, Tags } from "lucide-react";
+import { Tag, Package } from "@phosphor-icons/react/dist/ssr";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { use } from "react";
@@ -29,7 +29,7 @@ export default function DashboardPage() {
         <Link href="/dashboard/categories">
           <CardDefault className="flex items-center justify-between">
             <Heading as="h3">Categorias</Heading>
-            <Tags />
+            <Tag />
           </CardDefault>
         </Link>
 

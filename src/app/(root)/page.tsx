@@ -7,7 +7,7 @@ import { Text } from "@/components/Text";
 import { Button } from "@/components/ui/button";
 import { getCategories } from "@/services/categoriesService";
 import { getProducts } from "@/services/productService";
-import { ChevronRight } from "lucide-react";
+import { CaretRight } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
@@ -32,7 +32,7 @@ export default function HomePage() {
             href="/search"
           >
             <Button className="uppercase">
-              Conferir <ChevronRight />
+              Conferir <CaretRight />
             </Button>
           </Link>
         </section>

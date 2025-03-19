@@ -32,9 +32,9 @@ import { useLoading } from "@/hook/useLoading";
 import { Product, stockEntry } from "@/services/productService";
 import { findProductInArray } from "@/utils/product";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Package, PackagePlus } from "lucide-react";
+import { ArrowRight, Package } from "@phosphor-icons/react";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { parseCookies } from "nookies";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -62,8 +62,7 @@ export function DialogAddProduct({ products }: DialogAddProductProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { isLoading, start, stop } = useLoading();
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
-  const cookies = parseCookies();
-  const token = cookies["APP_SAVINA:token"];
+  const token = Cookies.get("APP_SAVINA:token") ?? "";
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -109,7 +108,7 @@ export function DialogAddProduct({ products }: DialogAddProductProps) {
       <DialogTrigger>
         <CardDefault className="flex items-center justify-between">
           <Heading as="h3">Entrada</Heading>
-          <PackagePlus />
+          <Package />
         </CardDefault>
       </DialogTrigger>
 
