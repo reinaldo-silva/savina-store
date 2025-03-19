@@ -72,7 +72,7 @@ export default function CatalogPage() {
               <Text className="text-sm font-semibold">Role para baixo</Text>
             </Link>
             <ChevronsDown
-              className="duration-[1500ms] animate-bounce text-zinc-600"
+              className="animate-bounce text-zinc-600 duration-1000"
               size={24}
             />
           </div>
