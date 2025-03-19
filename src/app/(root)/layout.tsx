@@ -22,7 +22,10 @@ export default function RootLayout({
         <div className="mx-auto flex h-full w-full max-w-screen-lg flex-1 border-x border-zinc-200 bg-white shadow-sm">
           {children}
         </div>
-        <Footer categories={allCategories.data ?? []} />
+
+        <Suspense>
+          <Footer categories={allCategories.data ?? []} />
+        </Suspense>
         <FooterNavigation />
       </div>
     </RootContextProvider>
