@@ -30,9 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`overflow-x-hidden antialiased ${poppins.variable} ${nunito.variable}`}
-      >
+      <body className={`antialiased ${poppins.variable} ${nunito.variable}`}>
         {children}
         <Toaster />
       </body>

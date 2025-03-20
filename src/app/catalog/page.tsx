@@ -24,7 +24,7 @@ export default function CatalogPage() {
   }
 
   return (
-    <div className="flex h-svh flex-col items-center justify-center overflow-hidden bg-orange-50/50">
+    <div className="relative flex h-svh flex-col items-center justify-center overflow-hidden overflow-x-hidden bg-orange-50/50">
       <div className="w-full max-w-screen-md flex-1 overflow-x-hidden overflow-y-scroll scroll-smooth border-x bg-zinc-50 pb-4">
         <header className="flex w-full flex-col items-center justify-between bg-zinc-50">
           <div className="flex h-56 w-full flex-col items-center justify-center p-2 py-4">

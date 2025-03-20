@@ -46,7 +46,7 @@ export function PreviewProduct() {
   return (
     <animated.div
       style={{ ...backgroundProps }}
-      className="absolute right-0 top-0 flex h-svh w-full items-center justify-center overflow-hidden p-2"
+      className="absolute left-0 top-0 flex h-svh w-full items-center justify-center overflow-hidden p-2"
     >
       <div className="absolute left-0 top-0 h-full w-full bg-zinc-950/40" />
       <CardDefault
