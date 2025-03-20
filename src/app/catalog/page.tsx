@@ -53,7 +53,7 @@ export default function CatalogPage() {
           </div>
         </header>
 
-        <section className="flex h-[calc(100svh-350px)] flex-col gap-2 border-b bg-zinc-100 p-4">
+        <section className="flex min-h-[calc(100svh-350px)] flex-col gap-2 border-b bg-zinc-100 p-4">
           <Heading as="h3">Savina Acessórios</Heading>
           <Text className="flex-1 text-muted-foreground">
             Na Savina Acessórios, oferecemos uma linda seleção de joias em prata
@@ -63,7 +63,7 @@ export default function CatalogPage() {
             ocasião!
           </Text>
 
-          <div className="flex flex-col items-center space-y-2 self-center">
+          <div className="mt-2 flex flex-col items-center space-y-2 self-center">
             <Link
               href="#catalog"
               className="p flex w-32 flex-col items-center justify-center gap-3 rounded-full border border-zinc-300 p-2"
