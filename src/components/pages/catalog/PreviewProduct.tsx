@@ -63,8 +63,11 @@ export function PreviewProduct() {
         className="relative z-10 flex h-auto max-h-[100%] w-full max-w-screen-sm flex-col overflow-y-scroll bg-red-50 p-2 md:size-auto"
       >
         {!isLoading && (
-          <Link href={`/catalog`} className="absolute right-3 top-3">
-            <X />
+          <Link
+            href={`/catalog`}
+            className="absolute right-3 top-3 rounded-md bg-red-500 p-0.5"
+          >
+            <X className="text-zinc-50" weight="bold" />
           </Link>
         )}
 
