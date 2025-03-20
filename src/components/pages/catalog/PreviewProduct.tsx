@@ -37,7 +37,7 @@ export function PreviewProduct() {
     config: { duration: 200 },
   });
 
-  const phoneNumber = "5517991115889";
+  const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
   const message = `Olá, tenho interesse nesse produto: ${window.location.href}`;
   const encodedMessage = encodeURIComponent(message);
 
