@@ -71,6 +71,14 @@ export function FormData({ categories, openDialog }: FormDataProps) {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      categories: [],
+      cost: 0,
+      description: "",
+      name: "",
+      price: 0,
+      stock: 0,
+    },
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {

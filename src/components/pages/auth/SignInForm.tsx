@@ -33,19 +33,21 @@ export function SignInForm() {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: { email: "", password: "" },
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     start();
+
     try {
       const { name, token } = await signIn(data);
 
       Cookies.set("APP_SAVINA:token", token, {
-        maxAge: 1 * (24 * 60 * 60),
+        expires: 1,
         path: "/",
       });
       Cookies.set("APP_SAVINA:name", name, {
-        maxAge: 1 * (24 * 60 * 60),
+        expires: 1,
         path: "/",
       });
 

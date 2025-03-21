@@ -1,8 +1,10 @@
 "use client";
-import { CategorySelector } from "@/components/CategorySelector";
-import { Heading } from "@/components/Heading";
-import { Text } from "@/components/Text";
-import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hook/useIsMobile";
+import { Category } from "@/services/categoriesService";
+import { CategorySelector } from "@components/CategorySelector";
+import { Heading } from "@components/Heading";
+import { Text } from "@components/Text";
+import { Button } from "@components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,10 +12,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useIsMobile } from "@/hook/useIsMobile";
-import { Category } from "@/services/categoriesService";
+} from "@components/ui/form";
+import { Input } from "@components/ui/input";
 import { useRootContext } from "@context/RootContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Funnel, X } from "@phosphor-icons/react";
