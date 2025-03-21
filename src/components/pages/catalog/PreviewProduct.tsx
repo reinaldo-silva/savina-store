@@ -14,6 +14,7 @@ import {
   WhatsappLogo,
 } from "@phosphor-icons/react";
 import { animated, useSpring } from "@react-spring/web";
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -51,6 +52,8 @@ export function PreviewProduct() {
         .finally(() => stop());
     }
   }, [id, start, stop]);
+
+  const isAvailable = product ? product.stock > 0 : false;
 
   return (
     <animated.div
@@ -103,7 +106,15 @@ export function PreviewProduct() {
                   <CarouselSection images={product.images} isCatalog />
                 </div>
                 <section className="p-2 px-3">
-                  <div className="flex items-center justify-between">
+                  <Text
+                    className={clsx("text-sm font-semibold", {
+                      "text-green-500": isAvailable,
+                      "text-red-500": !isAvailable,
+                    })}
+                  >
+                    {isAvailable ? "Disponível" : "Esgotado"}
+                  </Text>
+                  <div className="flex items-start justify-between gap-2">
                     <Heading as="h3">{product?.name}</Heading>
 
                     <Heading as="h5" className="font-semibold">

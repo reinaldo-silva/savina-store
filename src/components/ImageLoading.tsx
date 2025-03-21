@@ -8,10 +8,12 @@ export function ImageLoading({
   alt,
   url,
   classNameImage,
+  grayscale,
 }: {
   url: string;
   alt: string;
   classNameImage?: string;
+  grayscale?: boolean;
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [img, setImg] = useState(url);
@@ -34,7 +36,11 @@ export function ImageLoading({
         height={800}
         src={img}
         alt={alt}
-        className={clsx("flex size-full object-cover", classNameImage)}
+        className={clsx(
+          "flex size-full object-cover",
+          { grayscale: grayscale },
+          classNameImage,
+        )}
       />
     </div>
   );

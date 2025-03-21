@@ -82,7 +82,12 @@ export default function CatalogPage() {
         </Heading>
         <ListCatalog>
           {(allProducts.data ?? []).map((data, index) => (
-            <ProductCard isCatalog data={data} key={index} />
+            <ProductCard
+              grayscale={data.stock === 0}
+              isCatalog
+              data={data}
+              key={index}
+            />
           ))}
         </ListCatalog>
       </div>

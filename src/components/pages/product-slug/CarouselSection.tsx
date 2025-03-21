@@ -24,9 +24,14 @@ import { useRef, useState } from "react";
 interface CarouselSectionProps {
   images: IImage[];
   isCatalog?: boolean;
+  grayscale?: boolean;
 }
 
-export function CarouselSection({ images, isCatalog }: CarouselSectionProps) {
+export function CarouselSection({
+  images,
+  isCatalog,
+  grayscale,
+}: CarouselSectionProps) {
   const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
   const [currentImageView, setCurrentImageView] = useState<null | IImage>(null);
   const { ref, width } = useComponentWidth();
@@ -67,6 +72,7 @@ export function CarouselSection({ images, isCatalog }: CarouselSectionProps) {
                 }}
               >
                 <ImageLoading
+                  grayscale={grayscale}
                   url={img.image_url}
                   alt={`${img.product_id}-${index}`}
                 />

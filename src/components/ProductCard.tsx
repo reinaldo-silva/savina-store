@@ -12,9 +12,11 @@ import Link from "next/link";
 export function ProductCard({
   data: { images, name, price, slug, stock },
   isCatalog = false,
+  grayscale,
 }: {
   data: Product;
   isCatalog?: boolean;
+  grayscale?: boolean;
 }) {
   const imageCover = images.find((e) => e.is_cover) ?? images[0];
   const isAvailable = stock > 0;
@@ -27,7 +29,10 @@ export function ProductCard({
             <Image
               alt={name}
               priority
-              className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+              className={clsx(
+                "h-full w-full object-cover transition duration-500 group-hover:scale-110",
+                { grayscale: grayscale },
+              )}
               src={imageCover.image_url}
               width={300}
               height={400}
