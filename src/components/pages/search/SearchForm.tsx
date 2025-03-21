@@ -1,5 +1,4 @@
 "use client";
-import { useRootContext } from "@/app/(root)/RootContext";
 import { CategorySelector } from "@/components/CategorySelector";
 import { Heading } from "@/components/Heading";
 import { Text } from "@/components/Text";
@@ -15,10 +14,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { useIsMobile } from "@/hook/useIsMobile";
 import { Category } from "@/services/categoriesService";
+import { useRootContext } from "@context/RootContext";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Funnel, X } from "@phosphor-icons/react";
 import { animated, useSpring } from "@react-spring/web";
 import clsx from "clsx";
-import { Funnel, X } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";

@@ -1,9 +1,9 @@
 "use client";
-import { useRootContext } from "@/app/(root)/RootContext";
 import { Text } from "@/components/Text";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
 import { useScrollToTopOnRouteChange } from "@/hook/useScrollToTopOnRouteChange";
+import { useRootContext } from "@context/RootContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Funnel,

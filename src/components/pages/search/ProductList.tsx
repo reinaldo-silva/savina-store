@@ -1,7 +1,7 @@
 "use client";
-import { useRootContext } from "@/app/(root)/RootContext";
 import { SearchInput } from "@/components/pages/search/SearchInput";
 import useComponentWidth from "@/hook/useComponentWidth";
+import { useRootContext } from "@context/RootContext";
 import { animated, useSpring } from "@react-spring/web";
 import clsx from "clsx";
 import { PropsWithChildren } from "react";

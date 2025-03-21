@@ -2,8 +2,8 @@ import { Footer } from "@/components/Footer";
 import { FooterNavigation } from "@/components/FooterNavigation";
 import { Header } from "@/components/Header";
 import { getCategories } from "@/services/categoriesService";
+import { RootContextProvider } from "@context/RootContext";
 import { Suspense, use } from "react";
-import { RootContextProvider } from "./RootContext";
 
 export default function RootLayout({
   children,

@@ -5,17 +5,19 @@ import {
   Link as ExternalLink,
   ImageBroken,
 } from "@phosphor-icons/react/dist/ssr";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
 export function ProductCard({
-  data: { images, name, price, slug },
+  data: { images, name, price, slug, stock },
   isCatalog = false,
 }: {
   data: Product;
   isCatalog?: boolean;
 }) {
   const imageCover = images.find((e) => e.is_cover) ?? images[0];
+  const isAvailable = stock > 0;
 
   return (
     <Link href={isCatalog ? `/catalog?id=${slug}` : `/product/${slug}`}>
@@ -47,8 +49,15 @@ export function ProductCard({
         </div>
 
         {isCatalog && (
-          <div className="w-full rounded border bg-orange-100 py-1">
-            <Text className="font-medium">Compre já!</Text>
+          <div className="w-full border-b py-1">
+            <Text
+              className={clsx("font-semibold", {
+                "text-green-500": isAvailable,
+                "text-red-500": !isAvailable,
+              })}
+            >
+              {isAvailable ? "Disponível" : "Esgotado"}
+            </Text>
           </div>
         )}
       </button>
