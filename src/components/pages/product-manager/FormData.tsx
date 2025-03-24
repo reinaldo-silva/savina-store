@@ -89,7 +89,7 @@ export function FormData({ categories, openDialog }: FormDataProps) {
       }
       if (page === "CREATE") {
         const slug = await createProduct({ data, token });
-        handleChangeStatus({ page: "CREATE", slugId: slug });
+        handleChangeStatus({ page: "EDIT", slugId: slug });
       }
 
       await fetch("/api/revalidate/products", { method: "GET" }).then(() => {

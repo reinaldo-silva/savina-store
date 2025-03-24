@@ -3,13 +3,18 @@ import { Heading } from "@/components/Heading";
 import { DialogAddProduct } from "@/components/pages/dashboard/DialogAddProduct";
 import { DialogSubProduct } from "@/components/pages/dashboard/DialogSubProduct";
 import { getProductsToAdmin } from "@/services/productService";
-import { Tag, Package } from "@phosphor-icons/react/dist/ssr";
+import { Package, Tag } from "@phosphor-icons/react/dist/ssr";
 import { cookies } from "next/headers";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { use } from "react";
 
 export default function DashboardPage() {
   const token = cookies().get("APP_SAVINA:token")?.value ?? "";
+
+  if (!token) {
+    redirect("/catalog");
+  }
 
   const allProducts = use(getProductsToAdmin({ size: "100", token }));
 

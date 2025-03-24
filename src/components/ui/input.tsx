@@ -16,11 +16,11 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
     }
 
     return (
-      <div className="relative flex h-10 w-full rounded-sm ring-black focus-within:ring-2">
+      <div className="relative flex h-10 overflow-hidden rounded-sm border ring-black focus-within:ring-2">
         <input
           type={currentType}
           className={cn(
-            "flex-1 rounded-sm border bg-background px-3 py-2 text-base file:border-0 file:bg-transparent file:text-base file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+            "flex flex-1 rounded-sm bg-background px-3 py-2 text-base file:border-0 file:bg-transparent file:text-base file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
             className,
             { "pr-10": currentType === "password" },
           )}

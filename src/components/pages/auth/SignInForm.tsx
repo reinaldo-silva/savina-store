@@ -1,4 +1,5 @@
 "use client";
+import { createCookie } from "@/app/cookies/actions";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -12,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import { useLoading } from "@/hook/useLoading";
 import { signIn } from "@/services/aurhService";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -42,17 +42,11 @@ export function SignInForm() {
     try {
       const { name, token } = await signIn(data);
 
-      Cookies.set("APP_SAVINA:token", token, {
-        expires: 1,
-        path: "/",
-      });
-      Cookies.set("APP_SAVINA:name", name, {
-        expires: 1,
-        path: "/",
-      });
+      await createCookie({ name: "APP_SAVINA:token", value: token });
+      await createCookie({ name: "APP_SAVINA:name", value: name });
 
       toast(`Login realizado com sucesso!`);
-      push("/");
+      push("/dashboard");
     } catch (error) {
       if (error instanceof Error) {
         toast(error.message);
