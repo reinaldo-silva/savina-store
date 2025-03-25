@@ -50,7 +50,7 @@ export function CarouselSection({
           opts={{
             loop: true,
           }}
-          className="flex h-full bg-green-300"
+          className="flex h-full"
           plugins={[plugin.current]}
           onMouseEnter={plugin.current.stop}
           onMouseLeave={plugin.current.reset}
