@@ -102,9 +102,8 @@ export function PreviewProduct() {
           <>
             {product && (
               <>
-                <div className="relative flex max-h-[30px] min-h-[400px] items-center overflow-hidden sm:max-h-[360px] sm:min-h-[360px]">
-                  <CarouselSection images={product.images} isCatalog />
-                </div>
+                <CarouselSection images={product.images} isCatalog />
+
                 <section className="p-2 px-3">
                   <Text
                     className={clsx("text-sm font-semibold", {
