@@ -5,7 +5,7 @@ import { PreviewProduct } from "@/components/pages/catalog/PreviewProduct";
 import { ProductCard } from "@/components/ProductCard";
 import { Text } from "@/components/Text";
 import { getProducts } from "@/services/productService";
-import { CaretDown, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
+import { CaretDown, Empty, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
@@ -80,16 +80,23 @@ export default function CatalogPage() {
         <Heading as="h3" className="px-4 pb-4 pt-8" id="catalog">
           Nosso catálogo
         </Heading>
-        <ListCatalog>
-          {(allProducts.data ?? []).map((data, index) => (
-            <ProductCard
-              grayscale={data.stock === 0}
-              isCatalog
-              data={data}
-              key={index}
-            />
-          ))}
-        </ListCatalog>
+        {allProducts.data && allProducts.data[0] ? (
+          <ListCatalog>
+            {allProducts.data.map((data, index) => (
+              <ProductCard
+                grayscale={data.stock === 0}
+                isCatalog
+                data={data}
+                key={index}
+              />
+            ))}
+          </ListCatalog>
+        ) : (
+          <div className="flex w-full flex-col items-center justify-center gap-2 py-10">
+            <Empty weight="fill" size={40} />
+            <Text>Não encontramos nenhum produto no catálogo</Text>
+          </div>
+        )}
       </div>
 
       <ClientOnly>
