@@ -12,6 +12,7 @@ import {
 import { useLoading } from "@/hook/useLoading";
 import { deleteProduct } from "@/services/productService";
 import { Trash, XCircle } from "@phosphor-icons/react";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -22,6 +23,7 @@ interface DeleteDialogProps {
 }
 
 export function DeleteDialog({ slugId, productName }: DeleteDialogProps) {
+  const token = Cookies.get("APP_SAVINA:token") ?? "";
   const [isOpen, setIsOpen] = useState(false);
   const { refresh } = useRouter();
   const { isLoading, start, stop } = useLoading();
@@ -29,7 +31,7 @@ export function DeleteDialog({ slugId, productName }: DeleteDialogProps) {
   async function handleDelete() {
     start();
     try {
-      await deleteProduct(slugId);
+      await deleteProduct(slugId, token);
 
       await fetch("/api/revalidate/products", { method: "GET" }).then(() => {
         toast("Produto deletado com sucesso!");

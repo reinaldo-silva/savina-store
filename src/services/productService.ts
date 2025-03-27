@@ -297,13 +297,14 @@ async function switchAvailable(slugId: string, token: string): Promise<void> {
   }
 }
 
-async function deleteProduct(productId: string): Promise<void> {
+async function deleteProduct(productId: string, token: string): Promise<void> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`,
     {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     },
   );

@@ -25,7 +25,9 @@ export default function Error({
         width={400}
         className="size-10"
       />
-      <Heading as="h3">Ocorreu um erro inesperado!</Heading>
+      <Heading as="h3" className="text-center">
+        Ocorreu um erro inesperado!
+      </Heading>
       <Button onClick={() => reset()}>Tente novamente</Button>
       <Link href="/catalog">
         <Button variant="link" type="button">
