@@ -49,7 +49,7 @@ export function ProductForm({ categories }: SearchFormProps) {
         <Button>Novo produto</Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="h-[calc(100svh-10%)] sm:max-w-xl">
         <Tabs defaultValue="account">
           <DialogHeader>
             <DialogTitle>
