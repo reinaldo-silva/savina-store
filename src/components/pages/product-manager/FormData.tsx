@@ -42,7 +42,7 @@ const FormSchema = z.object({
   ),
   stock: z.preprocess(
     (val) => parseInt(String(val), 10),
-    z.number().int().min(1, "Estoque deve ser no mínimo 1"),
+    z.number().int().min(0, "Estoque deve ser no mínimo 0"),
   ),
   cost: z.preprocess(
     (val) => parseFloat(String(val)),
