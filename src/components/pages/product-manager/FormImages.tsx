@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { ImageSelector } from "@/components/ImagesSelector";
 import { Text } from "@/components/Text";
@@ -21,9 +22,8 @@ import {
   uploadProductImages,
 } from "@/services/productService";
 import { formatDate } from "@/utils/formatDate";
+import { Desktop, Trash } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { Trash, Desktop } from "@phosphor-icons/react";
-import Image from "next/image";
 import Cookies from "js-cookie";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { useProductFormContext } from "./FormContext";
@@ -109,7 +109,7 @@ export function FormImages() {
                 publicId={image instanceof File ? null : image.public_id}
               />
             </div>
-            <Image
+            <img
               width={200}
               height={200}
               src={

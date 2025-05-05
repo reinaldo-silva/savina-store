@@ -6,7 +6,6 @@ import {
   ImageBroken,
 } from "@phosphor-icons/react/dist/ssr";
 import clsx from "clsx";
-import Image from "next/image";
 import Link from "next/link";
 
 export function ProductCard({
@@ -26,9 +25,10 @@ export function ProductCard({
       <button className="group flex w-full cursor-pointer flex-col space-y-1">
         <div className="relative flex h-40 w-full items-center justify-center overflow-hidden bg-zinc-200 shadow-md sm:h-64">
           {imageCover ? (
-            <Image
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
               alt={name}
-              priority
+              // priority
               className={clsx(
                 "h-full w-full object-cover transition duration-500 group-hover:scale-110",
                 { grayscale: grayscale },

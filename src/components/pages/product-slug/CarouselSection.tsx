@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { ImageLoading } from "@/components/ImageLoading";
 import {
@@ -19,7 +20,6 @@ import { Image as IImage } from "@/services/productService";
 import { ImageBroken } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Autoplay from "embla-carousel-autoplay";
-import Image from "next/image";
 import { useRef, useState } from "react";
 
 interface CarouselSectionProps {
@@ -97,7 +97,7 @@ export function CarouselSection({
                     Veja a imagem no seu tamanho original
                   </DialogDescription>
                 </DialogHeader>
-                <Image
+                <img
                   className="my-4 object-contain"
                   src={currentImageView.image_url}
                   width={1000}

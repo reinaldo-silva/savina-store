@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import clsx from "clsx";
-import Image from "next/image";
 import { useState } from "react";
 
 export function ImageLoading({
@@ -24,14 +24,14 @@ export function ImageLoading({
         "animate-pulse bg-zinc-300": isLoading,
       })}
     >
-      <Image
+      <img
         onLoad={() => {
           setIsLoading(false);
         }}
         onError={() => {
           setImg("/no-image.png");
         }}
-        priority
+        // priority
         width={800}
         height={800}
         src={img}

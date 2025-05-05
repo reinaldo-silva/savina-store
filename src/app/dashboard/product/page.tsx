@@ -29,7 +29,6 @@ import {
   SmileySad,
 } from "@phosphor-icons/react/dist/ssr";
 import { cookies } from "next/headers";
-import Image from "next/image";
 import Link from "next/link";
 import { Suspense, use } from "react";
 
@@ -85,7 +84,8 @@ export default function ProductManagerPage() {
                     <TableRow key={product.id}>
                       <TableCell className="w-14 p-2 text-center font-medium">
                         {currentImage ? (
-                          <Image
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
                             className="size-10 rounded-sm object-cover"
                             alt="Prev. imagem"
                             src={currentImage.image_url}
