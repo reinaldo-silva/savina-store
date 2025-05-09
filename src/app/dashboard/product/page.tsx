@@ -24,6 +24,8 @@ import {
 import { getCategories } from "@/services/categoriesService";
 import { getProductsToAdmin } from "@/services/productService";
 import {
+  CaretRight,
+  CaretLeft,
   ImageBroken,
   Link as LinkIcon,
   SmileySad,
@@ -32,10 +34,35 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { Suspense, use } from "react";
 
-export default function ProductManagerPage() {
+type PaginationStatus = {
+  canGoNext: boolean;
+  canGoPrev: boolean;
+};
+
+function getPaginationStatus(
+  currentPage: number,
+  totalPages: number,
+): PaginationStatus {
+  return {
+    canGoNext: currentPage < totalPages,
+    canGoPrev: currentPage > 1,
+  };
+}
+
+export default function ProductManagerPage({
+  searchParams: { page },
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
+  const currentPage = isNaN(Number(page)) ? 1 : Number(page);
+  const totalPages = 20;
+
   const token = cookies().get("APP_SAVINA:token")?.value ?? "";
   const allCategories = use(getCategories());
-  const allProducts = use(getProductsToAdmin({ size: "100", token }));
+  const allProducts = use(
+    getProductsToAdmin({ size: String(totalPages), token, page }),
+  );
+  const { canGoNext, canGoPrev } = getPaginationStatus(currentPage, totalPages);
 
   if (!allProducts.data) {
     return null;
@@ -57,7 +84,7 @@ export default function ProductManagerPage() {
         <ScrollArea className="w-[calc(100vw-16px)] md:w-[calc(100vw-32px)] lg:w-auto">
           <CardDefault className="!p-0">
             <Table>
-              <TableCaption className="pb-4">
+              <TableCaption className="relative pb-4">
                 {allProducts.data[0] ? (
                   <Text>Uma listagem dos produtos recentes.</Text>
                 ) : (
@@ -66,6 +93,22 @@ export default function ProductManagerPage() {
                     <SmileySad />
                   </div>
                 )}
+
+                <div className="absolute bottom-0 right-0 flex h-14 items-center justify-center gap-4 px-4">
+                  <Link
+                    className="border p-2"
+                    href={`/dashboard/product?page=${canGoPrev ? currentPage - 1 : 1}`}
+                  >
+                    <CaretLeft />
+                  </Link>
+                  {currentPage}
+                  <Link
+                    className="border p-2"
+                    href={`/dashboard/product?page=${canGoNext ? currentPage + 1 : currentPage}`}
+                  >
+                    <CaretRight />
+                  </Link>
+                </div>
               </TableCaption>
               <TableHeader>
                 <TableRow>

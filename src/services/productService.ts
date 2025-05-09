@@ -67,12 +67,14 @@ async function getProductsToAdmin({
   cat = "",
   name = "",
   size = "",
+  page = "",
   token,
 }: {
   token: string;
   name?: string;
   cat?: string;
   size?: string;
+  page?: string;
 }): Promise<ApiResponse<Product[]>> {
   const params = new URLSearchParams();
 
@@ -82,6 +84,10 @@ async function getProductsToAdmin({
 
   if (cat) {
     params.append("category_ids", cat);
+  }
+
+  if (page) {
+    params.append("page", page);
   }
 
   if (size) {
